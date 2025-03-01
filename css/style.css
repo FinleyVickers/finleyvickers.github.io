@@ -248,6 +248,35 @@ a:hover {
     font-size: 12px;
 }
 
+.project-links {
+    margin-top: 12px;
+    display: flex;
+    gap: 15px;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-color);
+    font-size: 14px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: 1px solid var(--accent-color);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.project-link:hover {
+    background-color: var(--accent-color);
+    color: var(--terminal-body);
+    text-decoration: none;
+}
+
+.project-link i {
+    font-size: 16px;
+}
+
 /* Contact specific styles */
 .contact-info {
     display: flex;
