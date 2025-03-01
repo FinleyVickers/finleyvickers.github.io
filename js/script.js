@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentCommand = document.getElementById('current-command');
     const commandsHistory = document.getElementById('commands-history');
     const contentPages = document.getElementById('content-pages');
-    const virtualKeyboard = document.getElementById('virtual-keyboard');
+    const commandButtons = document.getElementById('command-buttons');
     
     let commandHistory = [];
     let historyIndex = -1;
@@ -55,24 +55,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Handle virtual keyboard clicks
-    if (virtualKeyboard) {
-        const keys = virtualKeyboard.querySelectorAll('.key');
-        keys.forEach(key => {
-            key.addEventListener('click', function() {
-                const keyValue = this.getAttribute('data-key');
+    // Handle command button clicks
+    if (commandButtons) {
+        const buttons = commandButtons.querySelectorAll('.cmd-btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const command = this.getAttribute('data-command');
                 
-                if (keyValue === 'Enter') {
+                // Set the command text
+                currentCommand.textContent = command;
+                
+                // Execute after a short delay to show the command
+                setTimeout(() => {
                     executeCommand();
-                } else if (keyValue === 'Backspace') {
-                    currentCommand.textContent = currentCommand.textContent.slice(0, -1);
-                } else {
-                    // For regular command keys, add their text to the command
-                    currentCommand.textContent = keyValue;
-                }
-                
-                // Scroll to the bottom of the terminal
-                terminal.scrollTop = terminal.scrollHeight;
+                }, 200);
             });
         });
     }
@@ -194,20 +190,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Also listen for clicks on the terminal for mobile users
+    // Also listen for clicks on the terminal for focus
     terminal.addEventListener('click', function() {
-        // For mobile devices, we'll just focus on the terminal
-        // The virtual keyboard will be used instead of the device keyboard
-        if (isMobileDevice) {
-            // Scroll to the active command line
-            const activeCommandLine = document.querySelector('.command-line.active');
-            if (activeCommandLine) {
-                activeCommandLine.scrollIntoView({ behavior: 'smooth' });
-            }
-        } else {
-            // For desktop, we'll still use the original behavior
-            // This is just to ensure the cursor is visible
+        // For desktop, focus the terminal to allow typing
+        if (!isMobileDevice) {
             terminal.focus();
+        }
+        
+        // Scroll to the active command line
+        const activeCommandLine = document.querySelector('.command-line.active');
+        if (activeCommandLine) {
+            activeCommandLine.scrollIntoView({ behavior: 'smooth' });
         }
     });
 
