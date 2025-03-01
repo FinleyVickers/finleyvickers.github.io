@@ -3,9 +3,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentCommand = document.getElementById('current-command');
     const commandsHistory = document.getElementById('commands-history');
     const contentPages = document.getElementById('content-pages');
+    const virtualKeyboard = document.getElementById('virtual-keyboard');
     
     let commandHistory = [];
     let historyIndex = -1;
+    let isMobileDevice = false;
+
+    // Check if the device is mobile
+    function checkMobileDevice() {
+        isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        return isMobileDevice;
+    }
+
+    // Initialize mobile detection
+    checkMobileDevice();
 
     // Available commands
     const commands = {
@@ -25,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 500);
 
-    // Handle key events
+    // Handle key events for desktop
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             executeCommand();
@@ -43,6 +54,28 @@ document.addEventListener('DOMContentLoaded', function() {
             currentCommand.textContent += event.key;
         }
     });
+
+    // Handle virtual keyboard clicks
+    if (virtualKeyboard) {
+        const keys = virtualKeyboard.querySelectorAll('.key');
+        keys.forEach(key => {
+            key.addEventListener('click', function() {
+                const keyValue = this.getAttribute('data-key');
+                
+                if (keyValue === 'Enter') {
+                    executeCommand();
+                } else if (keyValue === 'Backspace') {
+                    currentCommand.textContent = currentCommand.textContent.slice(0, -1);
+                } else {
+                    // For regular command keys, add their text to the command
+                    currentCommand.textContent = keyValue;
+                }
+                
+                // Scroll to the bottom of the terminal
+                terminal.scrollTop = terminal.scrollHeight;
+            });
+        });
+    }
 
     // Handle command execution
     function executeCommand() {
@@ -163,77 +196,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Also listen for clicks on the terminal for mobile users
     terminal.addEventListener('click', function() {
-        // Create a temporary invisible input to trigger keyboard on mobile
-        const tempInput = document.createElement('input');
-        tempInput.style.position = 'absolute';
-        tempInput.style.opacity = '0';
-        tempInput.style.height = '0';
-        tempInput.style.width = '0';
-        
-        document.body.appendChild(tempInput);
-        tempInput.focus();
-        
-        // Track the previous input value to prevent duplicates
-        let previousValue = '';
-        
-        // Handle input from the temporary field - completely new approach
-        tempInput.addEventListener('input', function(e) {
-            // Get the difference between current and previous value
-            const newInput = e.target.value.slice(previousValue.length);
-            
-            // Only add new input if there is any
-            if (newInput) {
-                currentCommand.textContent += newInput;
+        // For mobile devices, we'll just focus on the terminal
+        // The virtual keyboard will be used instead of the device keyboard
+        if (isMobileDevice) {
+            // Scroll to the active command line
+            const activeCommandLine = document.querySelector('.command-line.active');
+            if (activeCommandLine) {
+                activeCommandLine.scrollIntoView({ behavior: 'smooth' });
             }
-            
-            // Store current value for next comparison
-            previousValue = e.target.value;
-        });
-        
-        // Handle special keys for the temporary input
-        tempInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                executeCommand();
-                // Reset tracking after command execution
-                previousValue = '';
-                e.target.value = '';
-                e.preventDefault();
-            } else if (e.key === 'Backspace') {
-                if (currentCommand.textContent.length > 0) {
-                    currentCommand.textContent = currentCommand.textContent.slice(0, -1);
-                    // Update tracking value to match the backspace
-                    previousValue = previousValue.slice(0, -1);
-                    e.target.value = previousValue;
-                }
-                e.preventDefault();
-            } else if (e.key === 'ArrowUp') {
-                navigateHistory('up');
-                // Update tracking value when using history
-                previousValue = currentCommand.textContent;
-                e.target.value = previousValue;
-                e.preventDefault();
-            } else if (e.key === 'ArrowDown') {
-                navigateHistory('down');
-                // Update tracking value when using history
-                previousValue = currentCommand.textContent;
-                e.target.value = previousValue;
-                e.preventDefault();
-            } else if (e.key === 'Tab') {
-                autocompleteCommand();
-                // Update tracking value after autocomplete
-                previousValue = currentCommand.textContent;
-                e.target.value = previousValue;
-                e.preventDefault();
-            }
-        });
-        
-        // Remove the field when user clicks elsewhere
-        document.addEventListener('click', function removeTemp(e) {
-            if (e.target !== terminal && e.target.parentElement !== terminal) {
-                document.body.removeChild(tempInput);
-                document.removeEventListener('click', removeTemp);
-            }
-        });
+        } else {
+            // For desktop, we'll still use the original behavior
+            // This is just to ensure the cursor is visible
+            terminal.focus();
+        }
     });
 
     // Show help by default when the page loads
