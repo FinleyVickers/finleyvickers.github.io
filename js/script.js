@@ -173,32 +173,56 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(tempInput);
         tempInput.focus();
         
-        // Handle input from the temporary field
+        // Track the previous input value to prevent duplicates
+        let previousValue = '';
+        
+        // Handle input from the temporary field - completely new approach
         tempInput.addEventListener('input', function(e) {
-            // Only add the input if it's not null and not empty
-            if (e.data) {
-                // Use the exact case from the input event and prevent duplicates
-                currentCommand.textContent += e.data;
-                tempInput.value = '';
+            // Get the difference between current and previous value
+            const newInput = e.target.value.slice(previousValue.length);
+            
+            // Only add new input if there is any
+            if (newInput) {
+                currentCommand.textContent += newInput;
             }
+            
+            // Store current value for next comparison
+            previousValue = e.target.value;
         });
         
         // Handle special keys for the temporary input
         tempInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 executeCommand();
+                // Reset tracking after command execution
+                previousValue = '';
+                e.target.value = '';
                 e.preventDefault();
             } else if (e.key === 'Backspace') {
-                currentCommand.textContent = currentCommand.textContent.slice(0, -1);
+                if (currentCommand.textContent.length > 0) {
+                    currentCommand.textContent = currentCommand.textContent.slice(0, -1);
+                    // Update tracking value to match the backspace
+                    previousValue = previousValue.slice(0, -1);
+                    e.target.value = previousValue;
+                }
                 e.preventDefault();
             } else if (e.key === 'ArrowUp') {
                 navigateHistory('up');
+                // Update tracking value when using history
+                previousValue = currentCommand.textContent;
+                e.target.value = previousValue;
                 e.preventDefault();
             } else if (e.key === 'ArrowDown') {
                 navigateHistory('down');
+                // Update tracking value when using history
+                previousValue = currentCommand.textContent;
+                e.target.value = previousValue;
                 e.preventDefault();
             } else if (e.key === 'Tab') {
                 autocompleteCommand();
+                // Update tracking value after autocomplete
+                previousValue = currentCommand.textContent;
+                e.target.value = previousValue;
                 e.preventDefault();
             }
         });
