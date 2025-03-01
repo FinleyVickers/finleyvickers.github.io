@@ -175,8 +175,32 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Handle input from the temporary field
         tempInput.addEventListener('input', function(e) {
-            currentCommand.textContent += e.data;
-            tempInput.value = '';
+            // Only add the input if it's not null and not empty
+            if (e.data) {
+                // Use the exact case from the input event and prevent duplicates
+                currentCommand.textContent += e.data;
+                tempInput.value = '';
+            }
+        });
+        
+        // Handle special keys for the temporary input
+        tempInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                executeCommand();
+                e.preventDefault();
+            } else if (e.key === 'Backspace') {
+                currentCommand.textContent = currentCommand.textContent.slice(0, -1);
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                navigateHistory('up');
+                e.preventDefault();
+            } else if (e.key === 'ArrowDown') {
+                navigateHistory('down');
+                e.preventDefault();
+            } else if (e.key === 'Tab') {
+                autocompleteCommand();
+                e.preventDefault();
+            }
         });
         
         // Remove the field when user clicks elsewhere
