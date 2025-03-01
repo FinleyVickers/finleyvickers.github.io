@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finley Vickers | Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize"></div>
+            </div>
+            <div class="terminal-title">finley@portfolio:~</div>
+        </div>
+        <div class="terminal-body">
+            <div id="terminal-content">
+                <div class="command-line">
+                    <span class="prompt">finley@portfolio:~$</span>
+                    <span class="command">cat welcome.txt</span>
+                </div>
+                <div class="output">
+                    <pre class="ascii-art">
+ _____ _       _            __     ___      _                 
+|  ___(_)_ __ | | ___ _   _\ \   / (_) ___| | _____ _ __ ___ 
+| |_  | | '_ \| |/ _ \ | | |\ \ / /| |/ __| |/ / _ \ '__/ __|
+|  _| | | | | | |  __/ |_| | \ V / | | (__|   <  __/ |  \__ \
+|_|   |_|_| |_|_|\___|\__, |  \_/  |_|\___|_|\_\___|_|  |___/
+                      |___/                                  
+                    </pre>
+                    <p>Welcome to my portfolio! Type <span class="highlight">help</span> to see available commands.</p>
+                </div>
+
+                <div id="commands-history"></div>
+                
+                <div class="command-line active">
+                    <span class="prompt">finley@portfolio:~$</span>
+                    <span id="current-command" class="command"></span>
+                    <span class="cursor">█</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-pages" style="display: none;">
+        <!-- About me section -->
+        <div id="about" class="content-section">
+            <h2>About Me</h2>
+            <p>I am a computer science student at the University of Victoria, motivated by learning and new ideas. I am seeking experience with industry leaders on the frontlines of tech innovation. I have experience with various practical concepts, including git and other project management methods. I have a special interest in software security and analysis, as well as IT management.</p>
+        </div>
+
+        <!-- Resume section -->
+        <div id="resume" class="content-section">
+            <h2>Resume</h2>
+            
+            <section class="resume-section">
+                <h3>Education</h3>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">University of Victoria, Faculty of Engineering and Computer Science</span>
+                        <span class="resume-item-date">09-2023 – 05-2027</span>
+                    </div>
+                    <p>Bachelor of Computer Science</p>
+                </div>
+            </section>
+
+            <section class="resume-section">
+                <h3>Skills</h3>
+                <ul>
+                    <li><strong>Programming:</strong> Python, Java, C#, C++, Bash</li>
+                    <li><strong>Data analysis:</strong> Jupyter, MS Excel, Visual Basic, R</li>
+                    <li><strong>Web Development:</strong> JavaScript, Vercel, HTML, CSS</li>
+                    <li><strong>Operating Systems:</strong> Unix/Linux, MS Windows, MacOSX</li>
+                    <li><strong>Software:</strong> Visual Studio, Unity, Microsoft Office, IntelliJ</li>
+                    <li><strong>Linux System Administration:</strong> Arch, Debian, Ubuntu, multi-user management, distributed systems</li>
+                    <li><strong>Project Management:</strong> Git, SVN, Kanban boards, Agile, documentation</li>
+                </ul>
+            </section>
+
+            <section class="resume-section">
+                <h3>Technical Projects</h3>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">Weather App</span>
+                        <span class="resume-item-date">09-2022 – 02-2023</span>
+                    </div>
+                    <ul>
+                        <li>A simple weather application for Windows and MacOS developed in Java using Maven and OpenJFX.</li>
+                        <li>Created multiple UI elements using OpenJFX and CSS.</li>
+                        <li>Interacted with multiple APIs for weather data worldwide.</li>
+                        <li>Solo Project, developed during school, but not for in-class work.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">BlackBox Secure File Container</span>
+                        <span class="resume-item-date">01-2025 – Present</span>
+                    </div>
+                    <ul>
+                        <li>Developed a secure desktop application in Java using GTK to create encrypted file containers with AES-256-CBC encryption and PBKDF2 key derivation.</li>
+                        <li>Implemented secure storage with unique salts and initialization vectors (IVs) for each container, enhancing data integrity and security.</li>
+                        <li>Designed an intuitive CLI and GUI interface, enabling users to manage encrypted containers, add/extract files, and perform batch operations.</li>
+                        <li>Ensured cross-platform compatibility by leveraging Java 17+, allowing the application to run on Windows, macOS, and Linux systems.</li>
+                        <li>Utilized IntelliJ IDEA for development, adhering to Agile methodologies and version control with Git for efficient project management.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">Disc golf bag manager app</span>
+                        <span class="resume-item-date">09-2024</span>
+                    </div>
+                    <ul>
+                        <li>A native iOS app written in Swift for the best native experience</li>
+                        <li>Follows iOS style guidelines.</li>
+                        <li>LLM integration pending</li>
+                        <li>Allows users to store their disc golf collection and gives users valuable stats to improve their game</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="resume-section">
+                <h3>Work Experience</h3>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">Grouse Mountain, North Vancouver, BC</span>
+                    </div>
+                    <div class="resume-item-position">
+                        <span class="position-title">Retail Associate</span>
+                        <span class="position-date">06-2024 – 09-2024</span>
+                    </div>
+                    <ul>
+                        <li>Assisted customers with finding merchandise and helping them make informed decisions.</li>
+                        <li>Got specialized training on brands like Arc'teryx and Patagonia</li>
+                    </ul>
+                    <div class="resume-item-position">
+                        <span class="position-title">Rentals Technician</span>
+                        <span class="position-date">10-2022 – 02-2023</span>
+                    </div>
+                    <ul>
+                        <li>Communicated with customers to adjust and repair gear to specifications.</li>
+                        <li>Worked with managers and supervisors to efficiently communicate with all team members.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">Cypress Mountain, North Vancouver, BC</span>
+                    </div>
+                    <div class="resume-item-position">
+                        <span class="position-title">Base Operations</span>
+                        <span class="position-date">10-2020 – 02-2021</span>
+                    </div>
+                    <ul>
+                        <li>Worked with crowd control and checking customer tickets.</li>
+                        <li>Learned the fundamentals of working with a team and customers, as well as how to communicate efficiently with management.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="resume-section">
+                <h3>Training, Certificates and Extracurricular Activities</h3>
+                <ul>
+                    <li>C# Course: C# Basics for Beginners: Learn C# Fundamentals by Coding (via Udemy)</li>
+                    <li>Python Course: Automate the Boring Stuff with Python programming (via Udemy)</li>
+                    <li>C++ Course: Beginning C++ Programming – From Beginner to Beyond (Via Udemy)</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- Projects section -->
+        <div id="projects" class="content-section">
+            <h2>Projects</h2>
+            <div class="project-card">
+                <h3>BlackBox Secure File Container</h3>
+                <div class="project-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Security</span>
+                    <span class="tag">Encryption</span>
+                    <span class="tag">GTK</span>
+                </div>
+                <p>Secure desktop application for creating encrypted file containers using AES-256-CBC encryption and PBKDF2 key derivation. Features both CLI and GUI interfaces for managing encrypted data with cross-platform support.</p>
+            </div>
+            <div class="project-card">
+                <h3>Weather App</h3>
+                <div class="project-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">OpenJFX</span>
+                    <span class="tag">Maven</span>
+                    <span class="tag">API</span>
+                </div>
+                <p>A cross-platform weather application built with Java, Maven, and OpenJFX. Features a clean UI and integrates with multiple weather APIs to provide global weather data.</p>
+            </div>
+            <div class="project-card">
+                <h3>Disc Golf Bag Manager</h3>
+                <div class="project-tags">
+                    <span class="tag">Swift</span>
+                    <span class="tag">iOS</span>
+                    <span class="tag">LLM</span>
+                </div>
+                <p>Native iOS application for disc golf enthusiasts to manage their disc collection and track performance statistics to improve their game. Built with Swift following iOS design guidelines.</p>
+            </div>
+        </div>
+
+        <!-- Contact section -->
+        <div id="contact" class="content-section">
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:fvickers05@gmail.com">fvickers05@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:2367779892">(236)-777-9892</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>North Vancouver, BC</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://linkedin.com/in/finleyvickers" target="_blank">LinkedIn</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/finleyvickers" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help section -->
+        <div id="help" class="content-section">
+            <h2>Available Commands</h2>
+            <div class="command-list">
+                <div class="command-item">
+                    <code>about</code>
+                    <span>- Display information about me</span>
+                </div>
+                <div class="command-item">
+                    <code>resume</code>
+                    <span>- View my resume</span>
+                </div>
+                <div class="command-item">
+                    <code>projects</code>
+                    <span>- Browse my projects</span>
+                </div>
+                <div class="command-item">
+                    <code>contact</code>
+                    <span>- Get my contact information</span>
+                </div>
+                <div class="command-item">
+                    <code>help</code>
+                    <span>- Show this help menu</span>
+                </div>
+                <div class="command-item">
+                    <code>clear</code>
+                    <span>- Clear the terminal</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
