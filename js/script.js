@@ -3,9 +3,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentCommand = document.getElementById('current-command');
     const commandsHistory = document.getElementById('commands-history');
     const contentPages = document.getElementById('content-pages');
+    const commandButtons = document.getElementById('command-buttons');
     
     let commandHistory = [];
     let historyIndex = -1;
+    let isMobileDevice = false;
+    let isProcessingInput = false; // Flag to prevent double input
+
+    // Check if the device is mobile
+    function checkMobileDevice() {
+        isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        return isMobileDevice;
+    }
+
+    // Initialize mobile detection
+    checkMobileDevice();
 
     // Available commands
     const commands = {
@@ -25,24 +37,87 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 500);
 
-    // Handle key events
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            executeCommand();
-        } else if (event.key === 'Backspace') {
-            currentCommand.textContent = currentCommand.textContent.slice(0, -1);
-        } else if (event.key === 'ArrowUp') {
-            navigateHistory('up');
-        } else if (event.key === 'ArrowDown') {
-            navigateHistory('down');
-        } else if (event.key === 'Tab') {
-            event.preventDefault();
-            autocompleteCommand();
-        } else if (event.key.length === 1) {
-            // Only append printable characters
-            currentCommand.textContent += event.key;
+    // Create a hidden input element to capture keyboard input
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'text';
+    hiddenInput.style.position = 'absolute';
+    hiddenInput.style.opacity = '0';
+    hiddenInput.style.height = '0';
+    hiddenInput.style.width = '0';
+    document.body.appendChild(hiddenInput);
+
+    // Focus the hidden input when the terminal is clicked
+    terminal.addEventListener('click', function() {
+        if (!isMobileDevice) {
+            hiddenInput.focus();
+            
+            // Scroll to the active command line
+            const activeCommandLine = document.querySelector('.command-line.active');
+            if (activeCommandLine) {
+                activeCommandLine.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     });
+
+    // Handle input from the hidden input field
+    hiddenInput.addEventListener('input', function(e) {
+        if (isProcessingInput) return; // Prevent double input
+        isProcessingInput = true;
+        
+        // Get the input value and clear the hidden input
+        const inputValue = hiddenInput.value;
+        hiddenInput.value = '';
+        
+        // Add the input to the current command
+        if (inputValue) {
+            currentCommand.textContent += inputValue;
+        }
+        
+        isProcessingInput = false;
+    });
+
+    // Handle special keys
+    hiddenInput.addEventListener('keydown', function(e) {
+        if (isProcessingInput) return; // Prevent double input
+        isProcessingInput = true;
+        
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            executeCommand();
+        } else if (e.key === 'Backspace') {
+            e.preventDefault();
+            currentCommand.textContent = currentCommand.textContent.slice(0, -1);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            navigateHistory('up');
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            navigateHistory('down');
+        } else if (e.key === 'Tab') {
+            e.preventDefault();
+            autocompleteCommand();
+        }
+        
+        isProcessingInput = false;
+    });
+
+    // Handle command button clicks
+    if (commandButtons) {
+        const buttons = commandButtons.querySelectorAll('.cmd-btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const command = this.getAttribute('data-command');
+                
+                // Set the command text
+                currentCommand.textContent = command;
+                
+                // Execute after a short delay to show the command
+                setTimeout(() => {
+                    executeCommand();
+                }, 200);
+            });
+        });
+    }
 
     // Handle command execution
     function executeCommand() {
@@ -161,32 +236,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Also listen for clicks on the terminal for mobile users
-    terminal.addEventListener('click', function() {
-        // Create a temporary invisible input to trigger keyboard on mobile
-        const tempInput = document.createElement('input');
-        tempInput.style.position = 'absolute';
-        tempInput.style.opacity = '0';
-        tempInput.style.height = '0';
-        tempInput.style.width = '0';
-        
-        document.body.appendChild(tempInput);
-        tempInput.focus();
-        
-        // Handle input from the temporary field
-        tempInput.addEventListener('input', function(e) {
-            currentCommand.textContent += e.data;
-            tempInput.value = '';
-        });
-        
-        // Remove the field when user clicks elsewhere
-        document.addEventListener('click', function removeTemp(e) {
-            if (e.target !== terminal && e.target.parentElement !== terminal) {
-                document.body.removeChild(tempInput);
-                document.removeEventListener('click', removeTemp);
-            }
-        });
-    });
+    // Focus the hidden input on page load for desktop
+    if (!isMobileDevice) {
+        hiddenInput.focus();
+    }
 
     // Show help by default when the page loads
     setTimeout(() => {

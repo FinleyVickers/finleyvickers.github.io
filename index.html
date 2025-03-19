@@ -45,6 +45,16 @@
                     <span id="current-command" class="command"></span>
                     <span class="cursor">█</span>
                 </div>
+                
+                <!-- Command Buttons -->
+                <div id="command-buttons" class="command-buttons">
+                    <button class="cmd-btn" data-command="help">help</button>
+                    <button class="cmd-btn" data-command="about">about</button>
+                    <button class="cmd-btn" data-command="resume">resume</button>
+                    <button class="cmd-btn" data-command="projects">projects</button>
+                    <button class="cmd-btn" data-command="contact">contact</button>
+                    <button class="cmd-btn" data-command="clear">clear</button>
+                </div>
             </div>
         </div>
     </div>
@@ -88,14 +98,15 @@
                 <h3>Technical Projects</h3>
                 <div class="resume-item">
                     <div class="resume-item-header">
-                        <span class="resume-item-title">Weather App</span>
-                        <span class="resume-item-date">09-2022 – 02-2023</span>
+                        <span class="resume-item-title">Productivity Timer</span>
+                        <span class="resume-item-date">01-2025 – Present</span>
                     </div>
                     <ul>
-                        <li>A simple weather application for Windows and MacOS developed in Java using Maven and OpenJFX.</li>
-                        <li>Created multiple UI elements using OpenJFX and CSS.</li>
-                        <li>Interacted with multiple APIs for weather data worldwide.</li>
-                        <li>Solo Project, developed during school, but not for in-class work.</li>
+                        <li>Developed a Chrome extension featuring a Pomodoro timer with modern UI using Vue.js and CSS animations to enhance productivity.</li>
+                        <li>Implemented customizable timer durations, auto-start options, and theme customization with gradient-based progress indicators.</li>
+                        <li>Integrated Chrome Extension APIs for notifications and storage, ensuring cross-session persistence of user preferences.</li>
+                        <li>Designed animated transitions and circular progress visuals using CSS gradients, adhering to Chrome Web Store guidelines.</li>
+                        <li>Resolved browser compatibility issues and optimized performance for low-memory environments.</li>
                     </ul>
                 </div>
                 <div class="resume-item">
@@ -113,14 +124,15 @@
                 </div>
                 <div class="resume-item">
                     <div class="resume-item-header">
-                        <span class="resume-item-title">Disc golf bag manager app</span>
-                        <span class="resume-item-date">09-2024</span>
+                        <span class="resume-item-title">Remote Management CLI</span>
+                        <span class="resume-item-date">02-2025 – Present</span>
                     </div>
                     <ul>
-                        <li>A native iOS app written in Swift for the best native experience</li>
-                        <li>Follows iOS style guidelines.</li>
-                        <li>LLM integration pending</li>
-                        <li>Allows users to store their disc golf collection and gives users valuable stats to improve their game</li>
+                        <li>Developed a terminal-based remote server monitoring tool in Rust, featuring real-time CPU, memory, and disk usage tracking.</li>
+                        <li>Implemented a responsive Terminal User Interface (TUI) using Ratatui, displaying historical performance data with interactive graphs.</li>
+                        <li>Secured connections via SSH with authentication methods including SSH agent and password fallback, ensuring minimal server access requirements.</li>
+                        <li>Optimized for low resource overhead, allowing efficient monitoring without significant impact on server performance.</li>
+                        <li>Utilized Rust's async capabilities and OpenSSL for secure communication, adhering to Agile methodologies with Git version control.</li>
                     </ul>
                 </div>
             </section>
@@ -148,19 +160,6 @@
                         <li>Worked with managers and supervisors to efficiently communicate with all team members.</li>
                     </ul>
                 </div>
-                <div class="resume-item">
-                    <div class="resume-item-header">
-                        <span class="resume-item-title">Cypress Mountain, North Vancouver, BC</span>
-                    </div>
-                    <div class="resume-item-position">
-                        <span class="position-title">Base Operations</span>
-                        <span class="position-date">10-2020 – 02-2021</span>
-                    </div>
-                    <ul>
-                        <li>Worked with crowd control and checking customer tickets.</li>
-                        <li>Learned the fundamentals of working with a team and customers, as well as how to communicate efficiently with management.</li>
-                    </ul>
-                </div>
             </section>
 
             <section class="resume-section">
@@ -185,25 +184,61 @@
                     <span class="tag">GTK</span>
                 </div>
                 <p>Secure desktop application for creating encrypted file containers using AES-256-CBC encryption and PBKDF2 key derivation. Features both CLI and GUI interfaces for managing encrypted data with cross-platform support.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/blackbox" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
             </div>
             <div class="project-card">
-                <h3>Weather App</h3>
+                <h3>ProductivityKeeper</h3>
                 <div class="project-tags">
-                    <span class="tag">Java</span>
-                    <span class="tag">OpenJFX</span>
-                    <span class="tag">Maven</span>
-                    <span class="tag">API</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Vue.js</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">Chrome Extension</span>
                 </div>
-                <p>A cross-platform weather application built with Java, Maven, and OpenJFX. Features a clean UI and integrates with multiple weather APIs to provide global weather data.</p>
+                <p>A Chrome extension featuring a Pomodoro timer to help stay productive with a beautiful, modern UI. Includes customizable work/break durations, visual progress indicators, multiple timer modes, and theme options.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/ProductivityKeeper" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
             </div>
             <div class="project-card">
-                <h3>Disc Golf Bag Manager</h3>
+                <h3>Remote Management CLI</h3>
                 <div class="project-tags">
-                    <span class="tag">Swift</span>
-                    <span class="tag">iOS</span>
-                    <span class="tag">LLM</span>
+                    <span class="tag">Rust</span>
+                    <span class="tag">TUI</span>
+                    <span class="tag">SSH</span>
+                    <span class="tag">OpenSSL</span>
                 </div>
-                <p>Native iOS application for disc golf enthusiasts to manage their disc collection and track performance statistics to improve their game. Built with Swift following iOS design guidelines.</p>
+                <p>Terminal-based remote server monitoring tool developed in Rust, featuring real-time system metrics tracking, interactive performance graphs, and secure SSH connections. Optimized for low resource overhead to efficiently monitor servers without impacting performance.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/remote_management_cli" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Storage Helper</h3>
+                <div class="project-tags">
+                    <span class="tag">C++</span>
+                    <span class="tag">Qt6</span>
+                    <span class="tag">CMake</span>
+                    <span class="tag">Multi-threading</span>
+                </div>
+                <p>A powerful C++ application built with Qt6 that helps manage large files on your system. Features multi-threaded directory scanning, size-based filtering, file type categorization, and efficient memory usage. Includes a modern UI for sorting and managing files with direct file system integration.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/StorageHelper" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>RustNZB (Work in Progress)</h3>
+                <div class="project-tags">
+                    <span class="tag">Rust</span>
+                    <span class="tag">CLI</span>
+                    <span class="tag">Async</span>
+                    <span class="tag">Networking</span>
+                </div>
+                <p>A fast and efficient CLI-based NZB client written in Rust. Features concurrent downloads using async Rust, multiple server support with failover, SSL/TLS encryption, and progress tracking. Includes YAML configuration for server management and comprehensive post-processing capabilities.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/RustNZB" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
             </div>
         </div>
 
