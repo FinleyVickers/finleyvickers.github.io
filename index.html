@@ -301,6 +301,37 @@
         </div>
     </div>
 
+
+    <script>
+    // Function to check the URL for the "code" parameter
+    function checkCodeParameter() {
+        const urlParams = new URLSearchParams(window.location.search); // Parse the query string
+        const code = urlParams.get('code'); // Get the value of the "code" parameter
+
+        if (code) {
+            // Create a new element to display the code value
+            const codeDisplay = document.createElement('div');
+            codeDisplay.className = 'code-display';
+            codeDisplay.style.marginTop = '20px';
+            codeDisplay.style.padding = '10px';
+            codeDisplay.style.border = '1px solid #ccc';
+            codeDisplay.style.borderRadius = '5px';
+            codeDisplay.style.backgroundColor = '#f9f9f9';
+            codeDisplay.style.fontFamily = 'monospace';
+
+            codeDisplay.textContent = `Code parameter detected: ${code}`;
+            
+            // Append the code display element to the terminal body or any other section
+            const terminalBody = document.querySelector('.terminal-body');
+            if (terminalBody) {
+                terminalBody.appendChild(codeDisplay);
+            }
+        }
+    }
+
+    // Call the function when the page loads
+    window.onload = checkCodeParameter;
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>
