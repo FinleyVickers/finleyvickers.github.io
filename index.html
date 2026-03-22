@@ -99,6 +99,19 @@
                 <h3>Technical Projects</h3>
                 <div class="resume-item">
                     <div class="resume-item-header">
+                        <span class="resume-item-title">Discogs Explorer</span>
+                        <span class="resume-item-date">03-2026 – Present</span>
+                    </div>
+                    <ul>
+                        <li>Built a full-stack record discovery web app using Next.js 16, TypeScript, and the Discogs API, enabling users to browse and navigate releases through sonic connections.</li>
+                        <li>Implemented a two-layer connection algorithm combining Last.fm artist similarity with a pre-computed style co-occurrence graph to surface meaningful recommendations.</li>
+                        <li>Designed an interactive D3.js genre/style map (~320 relationships) and a real-time force-directed exploration graph using react-force-graph-2d.</li>
+                        <li>Integrated Upstash Redis for multi-TTL caching (releases 7 days, search 1 hour, connections 24 hours), reducing Discogs API calls and improving response times.</li>
+                        <li>Built a custom rate-limit proxy and per-user authentication via httpOnly cookies, supporting both public and authenticated Discogs API tiers.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
                         <span class="resume-item-title">Productivity Timer</span>
                         <span class="resume-item-date">01-2025 – Present</span>
                     </div>
@@ -243,6 +256,19 @@
                 <p>A powerful C++ application built with Qt6 that helps manage large files on your system. Features multi-threaded directory scanning, size-based filtering, file type categorization, and efficient memory usage. Includes a modern UI for sorting and managing files with direct file system integration.</p>
                 <div class="project-links">
                     <a href="https://github.com/FinleyVickers/StorageHelper" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Discogs Explorer</h3>
+                <div class="project-tags">
+                    <span class="tag">Next.js</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">D3.js</span>
+                    <span class="tag">Redis</span>
+                </div>
+                <p>A web app for browsing and discovering records through sonic connections. Navigate from release to release via artist similarity (Last.fm), shared styles, and labels — with a force-directed exploration graph and an interactive D3.js genre/style map. Built on the Discogs API with Upstash Redis caching.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/discogs-explorer" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
                 </div>
             </div>
             <div class="project-card">
