@@ -2,197 +2,177 @@ document.addEventListener('DOMContentLoaded', function() {
     const terminal = document.getElementById('terminal-content');
     const currentCommand = document.getElementById('current-command');
     const commandsHistory = document.getElementById('commands-history');
-    const contentPages = document.getElementById('content-pages');
     const commandButtons = document.getElementById('command-buttons');
-    
+
     let commandHistory = [];
     let historyIndex = -1;
-    let isMobileDevice = false;
-    let isProcessingInput = false; // Flag to prevent double input
+    let isProcessingInput = false;
 
-    // Check if the device is mobile
-    function checkMobileDevice() {
-        isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        return isMobileDevice;
-    }
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    // Initialize mobile detection
-    checkMobileDevice();
-
-    // Available commands
     const commands = {
-        'about': showAbout,
-        'resume': showResume,
-        'projects': showProjects,
-        'contact': showContact,
-        'help': showHelp,
-        'clear': clearTerminal
+        about: showAbout,
+        resume: showResume,
+        work: showWork,
+        experience: showWork,
+        projects: showProjects,
+        contact: showContact,
+        help: showHelp,
+        clear: clearTerminal
     };
 
-    // Cursor blinking effect
-    setInterval(() => {
-        const cursor = document.querySelector('.cursor');
-        if (cursor) {
-            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-        }
-    }, 500);
-
-    // Create a hidden input element to capture keyboard input
     const hiddenInput = document.createElement('input');
     hiddenInput.type = 'text';
-    hiddenInput.style.position = 'absolute';
+    hiddenInput.setAttribute('aria-label', 'Terminal command input');
+    hiddenInput.autocomplete = 'off';
+    hiddenInput.spellcheck = false;
+    hiddenInput.style.position = 'fixed';
     hiddenInput.style.opacity = '0';
-    hiddenInput.style.height = '0';
-    hiddenInput.style.width = '0';
+    hiddenInput.style.pointerEvents = 'none';
+    hiddenInput.style.height = '1px';
+    hiddenInput.style.width = '1px';
     document.body.appendChild(hiddenInput);
 
-    // Focus the hidden input when the terminal is clicked
     terminal.addEventListener('click', function() {
         if (!isMobileDevice) {
             hiddenInput.focus();
-            
-            // Scroll to the active command line
-            const activeCommandLine = document.querySelector('.command-line.active');
-            if (activeCommandLine) {
-                activeCommandLine.scrollIntoView({ behavior: 'smooth' });
-            }
         }
     });
 
-    // Handle input from the hidden input field
-    hiddenInput.addEventListener('input', function(e) {
-        if (isProcessingInput) return; // Prevent double input
+    hiddenInput.addEventListener('input', function() {
+        if (isProcessingInput) return;
         isProcessingInput = true;
-        
-        // Get the input value and clear the hidden input
-        const inputValue = hiddenInput.value;
-        hiddenInput.value = '';
-        
-        // Add the input to the current command
-        if (inputValue) {
-            currentCommand.textContent += inputValue;
+
+        if (hiddenInput.value) {
+            currentCommand.textContent += hiddenInput.value;
+            hiddenInput.value = '';
         }
-        
+
         isProcessingInput = false;
     });
 
-    // Handle special keys
-    hiddenInput.addEventListener('keydown', function(e) {
-        if (isProcessingInput) return; // Prevent double input
+    hiddenInput.addEventListener('keydown', function(event) {
+        if (isProcessingInput) return;
         isProcessingInput = true;
-        
-        if (e.key === 'Enter') {
-            e.preventDefault();
+
+        if (event.key === 'Enter') {
+            event.preventDefault();
             executeCommand();
-        } else if (e.key === 'Backspace') {
-            e.preventDefault();
+        } else if (event.key === 'Backspace') {
+            event.preventDefault();
             currentCommand.textContent = currentCommand.textContent.slice(0, -1);
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
             navigateHistory('up');
-        } else if (e.key === 'ArrowDown') {
-            e.preventDefault();
+        } else if (event.key === 'ArrowDown') {
+            event.preventDefault();
             navigateHistory('down');
-        } else if (e.key === 'Tab') {
-            e.preventDefault();
+        } else if (event.key === 'Tab') {
+            event.preventDefault();
             autocompleteCommand();
         }
-        
+
         isProcessingInput = false;
     });
 
-    // Handle command button clicks
     if (commandButtons) {
-        const buttons = commandButtons.querySelectorAll('.cmd-btn');
-        buttons.forEach(button => {
+        commandButtons.querySelectorAll('.cmd-btn').forEach(button => {
             button.addEventListener('click', function() {
-                const command = this.getAttribute('data-command');
-                
-                // Set the command text
-                currentCommand.textContent = command;
-                
-                // Execute after a short delay to show the command
-                setTimeout(() => {
-                    executeCommand();
-                }, 200);
+                currentCommand.textContent = this.dataset.command || '';
+                window.setTimeout(executeCommand, 160);
             });
         });
     }
 
-    // Handle command execution
     function executeCommand() {
         const commandText = currentCommand.textContent.trim();
-        if (commandText) {
-            addToCommandHistory(commandText);
-            
-            // Add command to terminal
-            const cmdLine = document.createElement('div');
-            cmdLine.className = 'command-line';
-            cmdLine.innerHTML = `<span class="prompt">finley@portfolio:~$</span> <span class="command">${commandText}</span>`;
-            commandsHistory.appendChild(cmdLine);
-            
-            // Process command
-            processCommand(commandText);
-            
-            // Clear current command
-            currentCommand.textContent = '';
-            
-            // Scroll to bottom
-            terminal.scrollTop = terminal.scrollHeight;
-        }
+        if (!commandText) return;
+
+        addToCommandHistory(commandText);
+        appendCommandLine(commandText);
+        processCommand(commandText);
+        currentCommand.textContent = '';
+        scrollToBottom();
     }
 
-    // Process command
-    function processCommand(cmd) {
-        const cmdLower = cmd.toLowerCase();
-        const cmdParts = cmdLower.split(' ');
-        const mainCmd = cmdParts[0];
-        
-        if (commands[mainCmd]) {
-            commands[mainCmd]();
+    function appendCommandLine(commandText) {
+        const commandLine = document.createElement('div');
+        commandLine.className = 'command-line';
+
+        const prompt = document.createElement('span');
+        prompt.className = 'prompt';
+        prompt.textContent = 'finley@portfolio:~$';
+
+        const command = document.createElement('span');
+        command.className = 'command';
+        command.textContent = commandText;
+
+        commandLine.append(prompt, command);
+        commandsHistory.appendChild(commandLine);
+    }
+
+    function processCommand(rawCommand) {
+        const mainCommand = rawCommand.toLowerCase().split(/\s+/)[0];
+
+        if (commands[mainCommand]) {
+            commands[mainCommand]();
         } else {
-            showUnknownCommand(cmd);
+            showUnknownCommand(rawCommand);
         }
     }
 
-    // Command handling functions
+    function showSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+        displayCommandOutput(section.innerHTML);
+    }
+
     function showAbout() {
-        const aboutContent = document.getElementById('about').innerHTML;
-        displayCommandOutput(aboutContent);
+        showSection('about');
     }
-    
+
     function showResume() {
-        const resumeContent = document.getElementById('resume').innerHTML;
-        displayCommandOutput(resumeContent);
+        showSection('resume');
     }
-    
+
+    function showWork() {
+        showSection('work');
+    }
+
     function showProjects() {
-        const projectsContent = document.getElementById('projects').innerHTML;
-        displayCommandOutput(projectsContent);
+        showSection('projects');
     }
-    
+
     function showContact() {
-        const contactContent = document.getElementById('contact').innerHTML;
-        displayCommandOutput(contactContent);
+        showSection('contact');
     }
-    
+
     function showHelp() {
-        const helpContent = document.getElementById('help').innerHTML;
-        displayCommandOutput(helpContent);
+        showSection('help');
     }
-    
+
     function clearTerminal() {
-        commandsHistory.innerHTML = '';
+        commandsHistory.replaceChildren();
     }
-    
-    function showUnknownCommand(cmd) {
+
+    function showUnknownCommand(commandText) {
         const output = document.createElement('div');
         output.className = 'output';
-        output.innerHTML = `Command not found: <span class="highlight">${cmd}</span>. Type <span class="highlight">help</span> to see available commands.`;
+        output.append('Command not found: ');
+
+        const command = document.createElement('span');
+        command.className = 'highlight';
+        command.textContent = commandText;
+        output.append(command, '. Type ');
+
+        const help = document.createElement('span');
+        help.className = 'highlight';
+        help.textContent = 'help';
+        output.append(help, ' to see available commands.');
+
         commandsHistory.appendChild(output);
     }
 
-    // Display command output
     function displayCommandOutput(content) {
         const output = document.createElement('div');
         output.className = 'output';
@@ -200,49 +180,48 @@ document.addEventListener('DOMContentLoaded', function() {
         commandsHistory.appendChild(output);
     }
 
-    // Add to command history
-    function addToCommandHistory(cmd) {
-        commandHistory.push(cmd);
+    function addToCommandHistory(commandText) {
+        commandHistory.push(commandText);
         historyIndex = commandHistory.length;
     }
 
-    // Navigate through command history
     function navigateHistory(direction) {
         if (commandHistory.length === 0) return;
-        
+
         if (direction === 'up') {
             historyIndex = Math.max(0, historyIndex - 1);
-        } else if (direction === 'down') {
+        } else {
             historyIndex = Math.min(commandHistory.length, historyIndex + 1);
         }
-        
-        if (historyIndex < commandHistory.length) {
-            currentCommand.textContent = commandHistory[historyIndex];
-        } else {
-            currentCommand.textContent = '';
-        }
+
+        currentCommand.textContent = historyIndex < commandHistory.length
+            ? commandHistory[historyIndex]
+            : '';
     }
 
-    // Autocomplete command
     function autocompleteCommand() {
-        const inputCmd = currentCommand.textContent.toLowerCase();
-        
-        if (!inputCmd) return;
-        
-        const matchingCmds = Object.keys(commands).filter(cmd => cmd.startsWith(inputCmd));
-        
-        if (matchingCmds.length === 1) {
-            currentCommand.textContent = matchingCmds[0];
+        const inputCommand = currentCommand.textContent.toLowerCase();
+        if (!inputCommand) return;
+
+        const matchingCommands = Object.keys(commands).filter(command => command.startsWith(inputCommand));
+        if (matchingCommands.length === 1) {
+            currentCommand.textContent = matchingCommands[0];
         }
     }
 
-    // Focus the hidden input on page load for desktop
+    function scrollToBottom() {
+        const terminalBody = document.querySelector('.terminal-body');
+        if (terminalBody) {
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
+    }
+
     if (!isMobileDevice) {
         hiddenInput.focus();
     }
 
-    // Show help by default when the page loads
-    setTimeout(() => {
+    window.setTimeout(() => {
         processCommand('help');
-    }, 1000);
+        scrollToBottom();
+    }, 700);
 });
