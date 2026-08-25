@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finley Vickers | Portfolio</title>
+    <meta name="description" content="Finley Vickers is a software developer focused on distributed voice systems, applied AI, platform reliability, security, and full-stack product engineering.">
+    <meta name="theme-color" content="#1e1e1e">
+    <meta property="og:title" content="Finley Vickers | Software Developer">
+    <meta property="og:description" content="Portfolio and resume covering distributed voice systems, applied AI, secure execution, reliability, and cloud infrastructure.">
+    <meta property="og:type" content="website">
+    <title>Finley Vickers | Software Developer</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="terminal-container">
+    <main class="terminal-container" aria-label="Interactive portfolio terminal">
         <div class="terminal-header">
-            <div class="terminal-buttons">
+            <div class="terminal-buttons" aria-hidden="true">
                 <div class="terminal-button close"></div>
                 <div class="terminal-button minimize"></div>
                 <div class="terminal-button maximize"></div>
@@ -27,49 +32,156 @@
                     <span class="command">cat welcome.txt</span>
                 </div>
                 <div class="output">
-                    <pre class="ascii-art">
- _____ _       _            __     ___      _                 
-|  ___(_)_ __ | | ___ _   _\ \   / (_) ___| | _____ _ __ ___ 
+                    <pre class="ascii-art" aria-label="Finley Vickers">
+ _____ _       _            __     ___      _
+|  ___(_)_ __ | | ___ _   _\ \   / (_) ___| | _____ _ __ ___
 | |_  | | '_ \| |/ _ \ | | |\ \ / /| |/ __| |/ / _ \ '__/ __|
-|  _| | | | | | |  __/ |_| | \ V / | | (__|   <  __/ |  \__ \
+|  _| | | | | | |  __/ |_| | \ V / | | (__|   &lt;  __/ |  \__ \
 |_|   |_|_| |_|_|\___|\__, |  \_/  |_|\___|_|\_\___|_|  |___/
-                      |___/                                  
+                      |___/
                     </pre>
-                    <p>Welcome to my portfolio! Type <span class="highlight">help</span> to see available commands.</p>
+                    <p>Software developer building distributed voice, applied AI, security, and platform systems.</p>
+                    <p>Type <span class="highlight">help</span> to see available commands.</p>
                 </div>
 
-                <div id="commands-history"></div>
-                
+                <div id="commands-history" aria-live="polite"></div>
+
                 <div class="command-line active">
                     <span class="prompt">finley@portfolio:~$</span>
                     <span id="current-command" class="command"></span>
-                    <span class="cursor">█</span>
+                    <span class="cursor" aria-hidden="true">█</span>
                 </div>
-                
-                <!-- Command Buttons -->
-                <div id="command-buttons" class="command-buttons">
-                    <button class="cmd-btn" data-command="help">help</button>
-                    <button class="cmd-btn" data-command="about">about</button>
-                    <button class="cmd-btn" data-command="resume">resume</button>
-                    <button class="cmd-btn" data-command="projects">projects</button>
-                    <button class="cmd-btn" data-command="contact">contact</button>
-                    <button class="cmd-btn" data-command="clear">clear</button>
+
+                <div id="command-buttons" class="command-buttons" aria-label="Portfolio commands">
+                    <button class="cmd-btn" type="button" data-command="help">help</button>
+                    <button class="cmd-btn" type="button" data-command="about">about</button>
+                    <button class="cmd-btn" type="button" data-command="resume">resume</button>
+                    <button class="cmd-btn" type="button" data-command="work">work</button>
+                    <button class="cmd-btn" type="button" data-command="projects">projects</button>
+                    <button class="cmd-btn" type="button" data-command="contact">contact</button>
+                    <button class="cmd-btn" type="button" data-command="clear">clear</button>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <div id="content-pages" style="display: none;">
-        <!-- About me section -->
-        <div id="about" class="content-section">
+    <div id="content-pages" hidden>
+        <section id="about" class="content-section">
             <h2>About Me</h2>
-            <p>I am a computer science student at the University of Victoria, motivated by learning and new ideas. I am seeking experience with industry leaders on the frontlines of tech innovation. I have experience with various practical concepts, including git and other project management methods. I have a special interest in software security and analysis, as well as IT management.</p>
-        </div>
+            <div class="summary-block">
+                <p>I am a computer science student at the University of Victoria and a full-stack software developer focused on production AI, real-time communications, and platform engineering.</p>
+                <p>My recent work spans distributed telephony, multi-tenant Kotlin services, PostgreSQL concurrency, React product interfaces, application security, OpenTelemetry, and AWS/Kubernetes infrastructure. I enjoy tracing difficult failures across system boundaries and carrying fixes from architecture and persistence through API contracts, user experience, deployment, and observability.</p>
+            </div>
+            <div class="skill-grid compact-grid" aria-label="Current focus areas">
+                <div class="skill-group">
+                    <h3>Systems</h3>
+                    <p>Distributed workflows, event-driven services, concurrency, reliability</p>
+                </div>
+                <div class="skill-group">
+                    <h3>Applied AI</h3>
+                    <p>Human feedback loops, multimodal models, retrieval, safe automation</p>
+                </div>
+                <div class="skill-group">
+                    <h3>Platform</h3>
+                    <p>Kotlin, PostgreSQL, TypeScript, AWS, Kubernetes, OpenTelemetry</p>
+                </div>
+            </div>
+        </section>
 
-        <!-- Resume section -->
-        <div id="resume" class="content-section">
+        <section id="resume" class="content-section">
             <h2>Resume</h2>
-            
+
+            <section class="resume-section">
+                <h3>Professional Summary</h3>
+                <div class="summary-block">
+                    <p>Full-stack software developer specializing in distributed systems and applied AI for real-time communications. Experienced taking cross-cutting changes from database schema and concurrency design through generated APIs, frontend workflows, deployment, monitoring, and live verification.</p>
+                </div>
+            </section>
+
+            <section class="resume-section">
+                <h3>Work Experience</h3>
+                <div class="resume-item featured-resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">Software Developer — DialAI</span>
+                        <span class="resume-item-date">05-2026 – 08-2026</span>
+                    </div>
+                    <p class="resume-item-subtitle"><em>Remote · Full-stack platform and applied AI engineering</em></p>
+                    <ul>
+                        <li>Delivered 148 merged pull requests across a Kotlin/TypeScript monorepo, contributing to backend services, PostgreSQL persistence, generated OpenAPI clients, React interfaces, observability, and AWS/Kubernetes infrastructure.</li>
+                        <li>Architected an event-driven Telnyx call-control runtime with PostgreSQL-backed, claim-once continuations to safely resume multi-step voice workflows across replicas under at-least-once webhook delivery.</li>
+                        <li>Built a human-in-the-loop call-review system combining deterministic failure signals, tenant-scoped corrections, indexed failure-shape retrieval, replica-safe distillation, and risk-gated guidance updates.</li>
+                        <li>Designed a fail-closed secret-tokenization boundary for customer-authored JavaScript, exposing plaintext only at approved HTTP, JWT, and messaging sinks while keeping logs and transcripts secret-free.</li>
+                        <li>Eliminated JVM out-of-memory failures and database timeouts in a customer-history API using cycle-safe recursive SQL and keyset pagination; locally verified bounded 50-event responses in approximately 130 ms.</li>
+                        <li>Implemented cardinality-safe transfer telemetry, durable outcomes, Mission Control reporting, and Grafana alerting, then promoted a rootless, multi-architecture database-init image through staged non-production and production rollouts.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">API Integration Developer (Co-op)</span>
+                        <span class="resume-item-date">05-2025 – 10-2025</span>
+                    </div>
+                    <p class="resume-item-subtitle"><em>Remote</em></p>
+                    <ul>
+                        <li>Designed integrations connecting industry software and CRM systems using Make, Python, n8n, REST, SOAP, and webhooks.</li>
+                        <li>Diagnosed synchronization and authentication failures involving OAuth, API keys, JWTs, JSON, and XML.</li>
+                        <li>Developed and tested API endpoints with Postman and Swagger, documenting data mappings, error handling, and operational procedures.</li>
+                        <li>Collaborated with cross-functional teams to deliver secure and maintainable integrations.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">Grouse Mountain — North Vancouver, BC</span>
+                    </div>
+                    <div class="resume-item-position">
+                        <span class="position-title">Retail Associate</span>
+                        <span class="position-date">06-2024 – 09-2024</span>
+                    </div>
+                    <ul>
+                        <li>Helped customers evaluate outdoor products and make informed purchasing decisions.</li>
+                        <li>Completed specialized product training for brands including Arc'teryx and Patagonia.</li>
+                    </ul>
+                    <div class="resume-item-position">
+                        <span class="position-title">Rentals Technician</span>
+                        <span class="position-date">10-2022 – 02-2023</span>
+                    </div>
+                    <ul>
+                        <li>Adjusted and repaired rental equipment to customer and safety specifications while coordinating with supervisors and teammates.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="resume-section">
+                <h3>Technical Skills</h3>
+                <div class="skill-grid">
+                    <div class="skill-group">
+                        <h4>Languages & Frameworks</h4>
+                        <p>Kotlin, TypeScript, JavaScript, Python, Rust, Java, C++, SQL, Ktor, React, Next.js, FastAPI</p>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Backend & Data</h4>
+                        <p>PostgreSQL, jOOQ, Liquibase, REST, OpenAPI, WebSockets, keyset pagination, row locking, Testcontainers</p>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Distributed & AI Systems</h4>
+                        <p>Event-driven architecture, idempotency, at-least-once delivery, state machines, LLM evaluation, retrieval, MCP, multimodal audio</p>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Cloud & Operations</h4>
+                        <p>AWS, EKS, ECR, S3, IAM/OIDC, Kubernetes, Kustomize, Argo CD, OpenTofu/Terraform, Docker, Linux</p>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Observability & Security</h4>
+                        <p>OpenTelemetry, Prometheus, Grafana, metric-cardinality design, secret handling, OAuth/JWT, tenant isolation</p>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Engineering Practice</h4>
+                        <p>Git, code review, CI/CD, contract generation, integration testing, incident debugging, staged rollout and rollback planning</p>
+                    </div>
+                </div>
+            </section>
+
             <section class="resume-section">
                 <h3>Education</h3>
                 <div class="resume-item">
@@ -82,58 +194,23 @@
             </section>
 
             <section class="resume-section">
-                <h3>Skills</h3>
-                <ul>
-                    <li><strong>Programming:</strong> Python, Java, C#, C++, Bash</li>
-                    <li><strong>Data analysis:</strong> Jupyter, MS Excel, Visual Basic, R</li>
-                    <li><strong>Web Development:</strong> JavaScript, Vercel, HTML, CSS</li>
-                    <li><strong>Operating Systems:</strong> Unix/Linux, MS Windows, MacOSX</li>
-                    <li><strong>Software:</strong> Visual Studio, Unity, Microsoft Office, IntelliJ</li>
-                    <li><strong>Linux System Administration:</strong> Arch, Debian, Ubuntu, multi-user management, distributed systems</li>
-                    <li><strong>Project Management:</strong> Git, SVN, Kanban boards, Agile, documentation</li>
-                    <li><strong>Cybersecurity:</strong> Basic penetration testing, network security fundamentals, Linux privilege escalation (via TryHackMe)</li>
-                </ul>
-            </section>
-
-            <section class="resume-section">
-                <h3>Technical Projects</h3>
+                <h3>Selected Personal Projects</h3>
                 <div class="resume-item">
                     <div class="resume-item-header">
                         <span class="resume-item-title">Discogs Explorer</span>
                         <span class="resume-item-date">03-2026 – Present</span>
                     </div>
                     <ul>
-                        <li>Built a full-stack record discovery web app using Next.js 16, TypeScript, and the Discogs API, enabling users to browse and navigate releases through sonic connections.</li>
-                        <li>Implemented a two-layer connection algorithm combining Last.fm artist similarity with a pre-computed style co-occurrence graph to surface meaningful recommendations.</li>
-                        <li>Designed an interactive D3.js genre/style map (~320 relationships) and a real-time force-directed exploration graph using react-force-graph-2d.</li>
-                        <li>Integrated Upstash Redis for multi-TTL caching (releases 7 days, search 1 hour, connections 24 hours), reducing Discogs API calls and improving response times.</li>
-                        <li>Built a custom rate-limit proxy and per-user authentication via httpOnly cookies, supporting both public and authenticated Discogs API tiers.</li>
+                        <li>Built a Next.js and TypeScript record-discovery app with Discogs and Last.fm integrations, an interactive D3.js genre map, force-directed exploration, authenticated API access, and multi-TTL Redis caching.</li>
                     </ul>
                 </div>
                 <div class="resume-item">
                     <div class="resume-item-header">
-                        <span class="resume-item-title">Productivity Timer</span>
-                        <span class="resume-item-date">01-2025 – Present</span>
+                        <span class="resume-item-title">Audiobook Generator</span>
+                        <span class="resume-item-date">2026 – Present</span>
                     </div>
                     <ul>
-                        <li>Developed a Chrome extension featuring a Pomodoro timer with modern UI using Vue.js and CSS animations to enhance productivity.</li>
-                        <li>Implemented customizable timer durations, auto-start options, and theme customization with gradient-based progress indicators.</li>
-                        <li>Integrated Chrome Extension APIs for notifications and storage, ensuring cross-session persistence of user preferences.</li>
-                        <li>Designed animated transitions and circular progress visuals using CSS gradients, adhering to Chrome Web Store guidelines.</li>
-                        <li>Resolved browser compatibility issues and optimized performance for low-memory environments.</li>
-                    </ul>
-                </div>
-                <div class="resume-item">
-                    <div class="resume-item-header">
-                        <span class="resume-item-title">BlackBox Secure File Container</span>
-                        <span class="resume-item-date">01-2025 – Present</span>
-                    </div>
-                    <ul>
-                        <li>Developed a secure desktop application in Java using GTK to create encrypted file containers with AES-256-CBC encryption and PBKDF2 key derivation.</li>
-                        <li>Implemented secure storage with unique salts and initialization vectors (IVs) for each container, enhancing data integrity and security.</li>
-                        <li>Designed an intuitive CLI and GUI interface, enabling users to manage encrypted containers, add/extract files, and perform batch operations.</li>
-                        <li>Ensured cross-platform compatibility by leveraging Java 17+, allowing the application to run on Windows, macOS, and Linux systems.</li>
-                        <li>Utilized IntelliJ IDEA for development, adhering to Agile methodologies and version control with Git for efficient project management.</li>
+                        <li>Developed a FastAPI and CLI application that converts EPUB books into chaptered M4B audiobooks using cloud and local text-to-speech models, real-time progress tracking, and ffmpeg post-processing.</li>
                     </ul>
                 </div>
                 <div class="resume-item">
@@ -142,123 +219,169 @@
                         <span class="resume-item-date">02-2025 – Present</span>
                     </div>
                     <ul>
-                        <li>Developed a terminal-based remote server monitoring tool in Rust, featuring real-time CPU, memory, and disk usage tracking.</li>
-                        <li>Implemented a responsive Terminal User Interface (TUI) using Ratatui, displaying historical performance data with interactive graphs.</li>
-                        <li>Secured connections via SSH with authentication methods including SSH agent and password fallback, ensuring minimal server access requirements.</li>
-                        <li>Optimized for low resource overhead, allowing efficient monitoring without significant impact on server performance.</li>
-                        <li>Utilized Rust's async capabilities and OpenSSL for secure communication, adhering to Agile methodologies with Git version control.</li>
+                        <li>Created a low-overhead Rust TUI for remote server monitoring with async SSH connectivity and interactive CPU, memory, and disk history.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <span class="resume-item-title">BlackBox Secure File Container</span>
+                        <span class="resume-item-date">01-2025 – Present</span>
+                    </div>
+                    <ul>
+                        <li>Built a cross-platform Java application for AES-256-CBC encrypted file containers with PBKDF2 key derivation, per-container salts and IVs, and CLI/GUI workflows.</li>
                     </ul>
                 </div>
             </section>
 
             <section class="resume-section">
-                <h3>Work Experience</h3>
-                <div class="resume-item">
-                    <div class="resume-item-header">
-                        <span class="resume-item-title">API Integration Developer (Co-op)</span>
-                        <span class="resume-item-date">05-2025 – 10-2025</span>
-                    </div>
-                    <p><em>Remote</em></p>
-                    <ul>
-                        <li>Designed and implemented API integrations with third-party services, connecting industry software to CRM systems using Make, Python, and N8N.</li>
-                        <li>Developed, tested, and maintained API endpoints and connections using REST, SOAP, and Webhooks to ensure high performance and reliability.</li>
-                        <li>Troubleshot and resolved integration issues, including debugging errors related to data syncing and authentication (OAuth, API keys, JWT).</li>
-                        <li>Collaborated with cross-functional teams to ensure seamless integration of external APIs into the platform.</li>
-                        <li>Documented API integration processes, including endpoints, data mapping, and error handling procedures.</li>
-                        <li>Utilized API testing tools (Postman, Swagger) for development and debugging, working with JSON and XML data formats.</li>
-                        <li>Ensured integration solutions met security standards and adhered to best practices for performance and scalability.</li>
-                    </ul>
-                </div>
-                <div class="resume-item">
-                    <div class="resume-item-header">
-                        <span class="resume-item-title">Grouse Mountain, North Vancouver, BC</span>
-                    </div>
-                    <div class="resume-item-position">
-                        <span class="position-title">Retail Associate</span>
-                        <span class="position-date">06-2024 – 09-2024</span>
-                    </div>
-                    <ul>
-                        <li>Assisted customers with finding merchandise and helping them make informed decisions.</li>
-                        <li>Got specialized training on brands like Arc'teryx and Patagonia</li>
-                    </ul>
-                    <div class="resume-item-position">
-                        <span class="position-title">Rentals Technician</span>
-                        <span class="position-date">10-2022 – 02-2023</span>
-                    </div>
-                    <ul>
-                        <li>Communicated with customers to adjust and repair gear to specifications.</li>
-                        <li>Worked with managers and supervisors to efficiently communicate with all team members.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="resume-section">
-                <h3>Training, Certificates and Extracurricular Activities</h3>
+                <h3>Additional Training</h3>
                 <ul>
-                    <li>C# Course: C# Basics for Beginners: Learn C# Fundamentals by Coding (via Udemy)</li>
-                    <li>Python Course: Automate the Boring Stuff with Python programming (via Udemy)</li>
-                    <li>C++ Course: Beginning C++ Programming – From Beginner to Beyond (Via Udemy)</li>
-                    <li>Cybersecurity: TryHackMe learning paths including Introduction to Cyber Security, Pre-Security, and Complete Beginner</li>
+                    <li>TryHackMe learning paths covering cybersecurity foundations, networking, and Linux privilege escalation.</li>
+                    <li>Coursework and independent study in Python automation, C#, C++, software security, and Linux administration.</li>
                 </ul>
             </section>
-        </div>
+        </section>
 
-        <!-- Projects section -->
-        <div id="projects" class="content-section">
-            <h2>Projects</h2>
-            <div class="project-card">
-                <h3>BlackBox Secure File Container</h3>
+        <section id="work" class="content-section">
+            <h2>Selected Engineering Work</h2>
+            <p class="section-intro">Selected professional work delivered across 148 merged pull requests in the DialAI monorepo from May through August 2026. The repository is private, so these case studies focus on architecture, outcomes, and transferable engineering decisions.</p>
+
+            <div class="impact-grid" aria-label="Engineering impact summary">
+                <div class="impact-stat">
+                    <span class="impact-number">148</span>
+                    <span class="impact-label">merged PRs</span>
+                </div>
+                <div class="impact-stat">
+                    <span class="impact-number">Full stack</span>
+                    <span class="impact-label">database to UI and infrastructure</span>
+                </div>
+                <div class="impact-stat">
+                    <span class="impact-number">Real time</span>
+                    <span class="impact-label">voice, webhooks, queues, media</span>
+                </div>
+                <div class="impact-stat">
+                    <span class="impact-number">Production</span>
+                    <span class="impact-label">security, observability, rollouts</span>
+                </div>
+            </div>
+
+            <article class="case-study-card">
+                <div class="case-study-header">
+                    <div>
+                        <span class="case-study-kicker">Distributed systems · Telephony</span>
+                        <h3>Provider-parity voice workflows over at-least-once webhooks</h3>
+                    </div>
+                </div>
                 <div class="project-tags">
-                    <span class="tag">Java</span>
+                    <span class="tag">Kotlin</span>
+                    <span class="tag">Ktor</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Telnyx</span>
+                    <span class="tag">Twilio</span>
+                    <span class="tag">WebSockets</span>
+                </div>
+                <ul>
+                    <li>Designed an interpreter that translated shared call scripts into imperative Telnyx Call Control actions while preserving existing Twilio behavior.</li>
+                    <li>Introduced a tenant-scoped, PostgreSQL-backed continuation store using claim-once semantics so duplicate webhooks and cross-replica resumes could not execute the same step twice.</li>
+                    <li>Expanded support to extension DTMF, warm-transfer recall, agent queues, recording, answering-machine handling, media-stream handoff, and live transfer announcements.</li>
+                    <li>Verified complex call-leg and transfer flows against real Telnyx calls in addition to unit, integration, and database tests.</li>
+                </ul>
+            </article>
+
+            <article class="case-study-card">
+                <div class="case-study-header">
+                    <div>
+                        <span class="case-study-kicker">Applied AI · Human feedback</span>
+                        <h3>A review agent that learns without silently rewriting production behavior</h3>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="tag">LLM Evaluation</span>
+                    <span class="tag">Retrieval</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">MCP</span>
+                    <span class="tag">React</span>
+                </div>
+                <ul>
+                    <li>Combined deterministic call signals with evidence-grounded model review, producing structured categories and transcript-specific explanations.</li>
+                    <li>Built a feedback loop from human correction to durable lesson, failure-shape retrieval, nightly replica-safe distillation, proposed guidance, and human or risk-gated application.</li>
+                    <li>Kept the hot path to one or two indexed queries with no embedding request; a targeted repository evaluation improved same-shape recall@5 from 0/3 to 3/3.</li>
+                    <li>Applied the same scoped-feedback pattern to automatic email routing while preventing the browser from supplying trusted tenant, flow, or source-message context.</li>
+                </ul>
+            </article>
+
+            <article class="case-study-card">
+                <div class="case-study-header">
+                    <div>
+                        <span class="case-study-kicker">Application security · Sandboxed execution</span>
+                        <h3>Making secrets usable without making them observable</h3>
+                    </div>
+                </div>
+                <div class="project-tags">
                     <span class="tag">Security</span>
-                    <span class="tag">Encryption</span>
-                    <span class="tag">GTK</span>
+                    <span class="tag">JavaScript Runtime</span>
+                    <span class="tag">Capability Tokens</span>
+                    <span class="tag">Defense in Depth</span>
                 </div>
-                <p>Secure desktop application for creating encrypted file containers using AES-256-CBC encryption and PBKDF2 key derivation. Features both CLI and GUI interfaces for managing encrypted data with cross-platform support.</p>
-                <div class="project-links">
-                    <a href="https://github.com/FinleyVickers/blackbox" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                <ul>
+                    <li>Created a per-execution SecretVault that replaced credentials with opaque tokens before they entered customer-authored JavaScript.</li>
+                    <li>Materialized plaintext only at sanctioned HTTP, JWT, SMS, and email sinks; logs, captured output, context additions, and transcripts retained tokens rather than live credentials.</li>
+                    <li>Designed the boundary to fail closed: an unhandled sink receives an unusable token instead of leaking a secret.</li>
+                    <li>Closed a follow-up exfiltration path in which a denied HTTP request could expose a materialized secret through a catchable JavaScript error message.</li>
+                </ul>
+            </article>
+
+            <article class="case-study-card">
+                <div class="case-study-header">
+                    <div>
+                        <span class="case-study-kicker">Performance · Reliability · Observability</span>
+                        <h3>Tracing failures across database, JVM, authentication, and telemetry boundaries</h3>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card">
-                <h3>ProductivityKeeper</h3>
                 <div class="project-tags">
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">Vue.js</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">Chrome Extension</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Keyset Pagination</span>
+                    <span class="tag">Keycloak</span>
+                    <span class="tag">OpenTelemetry</span>
+                    <span class="tag">Grafana</span>
                 </div>
-                <p>A Chrome extension featuring a Pomodoro timer to help stay productive with a beautiful, modern UI. Includes customizable work/break durations, visual progress indicators, multiple timer modes, and theme options.</p>
-                <div class="project-links">
-                    <a href="https://github.com/FinleyVickers/ProductivityKeeper" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                <ul>
+                    <li>Resolved a customer-history JVM OOM and recursive-query blow-up using a cycle-safe SQL CTE, bounded event retrieval, and cursor pagination; local verification returned a 50-event page in approximately 130 ms.</li>
+                    <li>Reduced warm tenant reloads from four to six Keycloak calls to zero and active tenant switches from two calls to one, while replacing a multi-second white screen with resilient loading and fallback behavior.</li>
+                    <li>Removed unbounded transcript identifiers from transfer histograms, persisted terminal outcomes, and built tenant-safe operational reporting and Grafana alerts for transfer health.</li>
+                    <li>Added atomic state-machine transition endpoints and row locking to prevent concurrent writers from overwriting unrelated flow changes.</li>
+                </ul>
+            </article>
+
+            <article class="case-study-card">
+                <div class="case-study-header">
+                    <div>
+                        <span class="case-study-kicker">Cloud infrastructure · Delivery</span>
+                        <h3>Staged promotion of rootless, immutable database initialization</h3>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card">
-                <h3>Remote Management CLI</h3>
                 <div class="project-tags">
-                    <span class="tag">Rust</span>
-                    <span class="tag">TUI</span>
-                    <span class="tag">SSH</span>
-                    <span class="tag">OpenSSL</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">EKS</span>
+                    <span class="tag">ECR</span>
+                    <span class="tag">Kubernetes</span>
+                    <span class="tag">Kustomize</span>
+                    <span class="tag">OpenTofu</span>
                 </div>
-                <p>Terminal-based remote server monitoring tool developed in Rust, featuring real-time system metrics tracking, interactive performance graphs, and secure SSH connections. Optimized for low resource overhead to efficiently monitor servers without impacting performance.</p>
-                <div class="project-links">
-                    <a href="https://github.com/FinleyVickers/remote_management_cli" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3>Storage Helper</h3>
-                <div class="project-tags">
-                    <span class="tag">C++</span>
-                    <span class="tag">Qt6</span>
-                    <span class="tag">CMake</span>
-                    <span class="tag">Multi-threading</span>
-                </div>
-                <p>A powerful C++ application built with Qt6 that helps manage large files on your system. Features multi-threaded directory scanning, size-based filtering, file type categorization, and efficient memory usage. Includes a modern UI for sorting and managing files with direct file system integration.</p>
-                <div class="project-links">
-                    <a href="https://github.com/FinleyVickers/StorageHelper" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
-                </div>
-            </div>
-            <div class="project-card">
+                <ul>
+                    <li>Packaged database provisioning into a rootless, multi-architecture image published under immutable commit tags and consumed by digest.</li>
+                    <li>Rolled the image through infrastructure, build, convergence, non-production, and production layers with explicit health and promotion gates.</li>
+                    <li>Validated restricted runtime settings across 21 jobs and removed legacy ConfigMap-backed executable scripts after every environment adopted the image.</li>
+                    <li>Preserved deterministic rollback by retaining prior digests and using new job generations rather than reusing completed Kubernetes job names.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="projects" class="content-section">
+            <h2>Personal Projects</h2>
+            <p class="section-intro">Independent projects covering data visualization, media tooling, systems programming, security, and developer utilities.</p>
+
+            <article class="project-card featured-project">
                 <h3>Discogs Explorer</h3>
                 <div class="project-tags">
                     <span class="tag">Next.js</span>
@@ -266,12 +389,13 @@
                     <span class="tag">D3.js</span>
                     <span class="tag">Redis</span>
                 </div>
-                <p>A web app for browsing and discovering records through sonic connections. Navigate from release to release via artist similarity (Last.fm), shared styles, and labels — with a force-directed exploration graph and an interactive D3.js genre/style map. Built on the Discogs API with Upstash Redis caching.</p>
+                <p>A record-discovery app for navigating releases through artist similarity, shared styles, and labels. Includes a force-directed exploration graph, an interactive genre/style map, authenticated Discogs access, and multi-TTL Upstash Redis caching.</p>
                 <div class="project-links">
-                    <a href="https://github.com/FinleyVickers/discogs-explorer" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                    <a href="https://github.com/FinleyVickers/discogs-explorer" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
                 </div>
-            </div>
-            <div class="project-card">
+            </article>
+
+            <article class="project-card">
                 <h3>Audiobook Generator</h3>
                 <div class="project-tags">
                     <span class="tag">Python</span>
@@ -279,106 +403,134 @@
                     <span class="tag">TTS</span>
                     <span class="tag">ffmpeg</span>
                 </div>
-                <p>Converts EPUB ebooks into M4B audiobooks with navigable chapter markers. Supports cloud TTS via Mistral Voxtral and local inference on Apple Silicon using mlx-audio. Includes a web UI and CLI, chapter selection, real-time progress tracking, and 18 voice models with voice-cloning support.</p>
+                <p>Converts EPUB books into chaptered M4B audiobooks. Supports cloud TTS through Mistral Voxtral and local Apple Silicon inference through mlx-audio, with chapter selection, real-time progress, and voice-cloning support.</p>
                 <div class="project-links">
-                    <a href="https://github.com/FinleyVickers/audiobook-gen" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                    <a href="https://github.com/FinleyVickers/audiobook-gen" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
                 </div>
-            </div>
-            <div class="project-card">
-                <h3>RustNZB (Work in Progress)</h3>
+            </article>
+
+            <article class="project-card">
+                <h3>Remote Management CLI</h3>
+                <div class="project-tags">
+                    <span class="tag">Rust</span>
+                    <span class="tag">TUI</span>
+                    <span class="tag">SSH</span>
+                    <span class="tag">OpenSSL</span>
+                </div>
+                <p>A low-overhead terminal interface for monitoring remote CPU, memory, and disk utilization with async SSH connections and interactive historical graphs.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/remote_management_cli" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <h3>BlackBox Secure File Container</h3>
+                <div class="project-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Security</span>
+                    <span class="tag">Encryption</span>
+                    <span class="tag">GTK</span>
+                </div>
+                <p>A cross-platform application for encrypted file containers using AES-256-CBC and PBKDF2, with unique salts and IVs plus CLI and GUI management workflows.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/blackbox" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <h3>ProductivityKeeper</h3>
+                <div class="project-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Vue.js</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">Chrome Extension</span>
+                </div>
+                <p>A Chrome extension with customizable Pomodoro modes, persisted preferences, notifications, animated progress, and theme controls.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/ProductivityKeeper" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <h3>Storage Helper</h3>
+                <div class="project-tags">
+                    <span class="tag">C++</span>
+                    <span class="tag">Qt6</span>
+                    <span class="tag">CMake</span>
+                    <span class="tag">Multithreading</span>
+                </div>
+                <p>A Qt6 desktop application for scanning, filtering, categorizing, and managing large files with multithreaded traversal and direct file-system integration.</p>
+                <div class="project-links">
+                    <a href="https://github.com/FinleyVickers/StorageHelper" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <h3>RustNZB <span class="muted">(work in progress)</span></h3>
                 <div class="project-tags">
                     <span class="tag">Rust</span>
                     <span class="tag">CLI</span>
                     <span class="tag">Async</span>
                     <span class="tag">Networking</span>
                 </div>
-                <p>A fast and efficient CLI-based NZB client written in Rust. Features concurrent downloads using async Rust, multiple server support with failover, SSL/TLS encryption, and progress tracking. Includes YAML configuration for server management and comprehensive post-processing capabilities.</p>
+                <p>An async Rust NZB client with concurrent downloads, multi-server failover, TLS, progress reporting, YAML configuration, and post-processing support.</p>
                 <div class="project-links">
-                    <a href="https://github.com/FinleyVickers/RustNZB" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                    <a href="https://github.com/FinleyVickers/RustNZB" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
                 </div>
-            </div>
-        </div>
+            </article>
+        </section>
 
-        <!-- Contact section -->
-        <div id="contact" class="content-section">
+        <section id="contact" class="content-section">
             <h2>Contact Me</h2>
             <div class="contact-info">
                 <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
                     <a href="mailto:fvickers05@gmail.com">fvickers05@gmail.com</a>
                 </div>
                 <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:2367779892">(236)-777-9892</a>
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    <a href="tel:2367779892">(236) 777-9892</a>
                 </div>
                 <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>North Vancouver, BC</span>
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    <span>British Columbia, Canada</span>
                 </div>
                 <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="https://linkedin.com/in/finleyvickers" target="_blank">LinkedIn</a>
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    <a href="https://linkedin.com/in/finleyvickers" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
                 <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/finleyvickers" target="_blank">GitHub</a>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/FinleyVickers" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Help section -->
-        <div id="help" class="content-section">
+        <section id="help" class="content-section">
             <h2>Available Commands</h2>
             <div class="command-list">
-                <div class="command-item">
-                    <code>about</code>
-                    <span>- Display information about me</span>
-                </div>
-                <div class="command-item">
-                    <code>resume</code>
-                    <span>- View my resume</span>
-                </div>
-                <div class="command-item">
-                    <code>projects</code>
-                    <span>- Browse my projects</span>
-                </div>
-                <div class="command-item">
-                    <code>contact</code>
-                    <span>- Get my contact information</span>
-                </div>
-                <div class="command-item">
-                    <code>help</code>
-                    <span>- Show this help menu</span>
-                </div>
-                <div class="command-item">
-                    <code>clear</code>
-                    <span>- Clear the terminal</span>
-                </div>
+                <div class="command-item"><code>about</code><span>- Display my professional profile</span></div>
+                <div class="command-item"><code>resume</code><span>- View my resume</span></div>
+                <div class="command-item"><code>work</code><span>- Read selected engineering case studies</span></div>
+                <div class="command-item"><code>projects</code><span>- Browse personal projects</span></div>
+                <div class="command-item"><code>contact</code><span>- Get my contact information</span></div>
+                <div class="command-item"><code>help</code><span>- Show this help menu</span></div>
+                <div class="command-item"><code>clear</code><span>- Clear the terminal</span></div>
             </div>
-        </div>
+            <p class="help-note">Keyboard: use ↑/↓ for history and Tab for command completion.</p>
+        </section>
     </div>
 
-
     <script>
-    // Function to check the URL for the "code" parameter
     function checkCodeParameter() {
-        const urlParams = new URLSearchParams(window.location.search); // Parse the query string
-        const code = urlParams.get('code'); // Get the value of the "code" parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
 
         if (code) {
-            // Create a new element to display the code value
             const codeDisplay = document.createElement('div');
             codeDisplay.className = 'code-display';
-            codeDisplay.style.marginTop = '20px';
-            codeDisplay.style.padding = '10px';
-            codeDisplay.style.border = '1px solid #ccc';
-            codeDisplay.style.borderRadius = '5px';
-            codeDisplay.style.backgroundColor = '#f9f9f9';
-            codeDisplay.style.fontFamily = 'monospace';
-
             codeDisplay.textContent = `Code parameter detected: ${code}`;
-            
-            // Append the code display element to the terminal body or any other section
+
             const terminalBody = document.querySelector('.terminal-body');
             if (terminalBody) {
                 terminalBody.appendChild(codeDisplay);
@@ -386,8 +538,7 @@
         }
     }
 
-    // Call the function when the page loads
-    window.onload = checkCodeParameter;
+    window.addEventListener('load', checkCodeParameter);
     </script>
     <script src="js/script.js"></script>
 </body>
