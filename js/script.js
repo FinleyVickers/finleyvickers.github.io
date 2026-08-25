@@ -78,21 +78,29 @@ document.addEventListener('DOMContentLoaded', function() {
     if (commandButtons) {
         commandButtons.querySelectorAll('.cmd-btn').forEach(button => {
             button.addEventListener('click', function() {
-                currentCommand.textContent = this.dataset.command || '';
-                window.setTimeout(executeCommand, 160);
+                const command = this.dataset.command || '';
+                const scrollMode = command === 'clear' ? 'none' : 'output';
+
+                currentCommand.textContent = command;
+                window.setTimeout(() => executeCommand({ scrollMode }), 160);
             });
         });
     }
 
-    function executeCommand() {
+    function executeCommand({ scrollMode = 'bottom' } = {}) {
         const commandText = currentCommand.textContent.trim();
         if (!commandText) return;
 
         addToCommandHistory(commandText);
         appendCommandLine(commandText);
-        processCommand(commandText);
+        const output = processCommand(commandText);
         currentCommand.textContent = '';
-        scrollToBottom();
+
+        if (scrollMode === 'output' && output) {
+            scrollToElementStart(output);
+        } else if (scrollMode === 'bottom') {
+            scrollToBottom();
+        }
     }
 
     function appendCommandLine(commandText) {
@@ -115,44 +123,45 @@ document.addEventListener('DOMContentLoaded', function() {
         const mainCommand = rawCommand.toLowerCase().split(/\s+/)[0];
 
         if (commands[mainCommand]) {
-            commands[mainCommand]();
-        } else {
-            showUnknownCommand(rawCommand);
+            return commands[mainCommand]();
         }
+
+        return showUnknownCommand(rawCommand);
     }
 
     function showSection(sectionId) {
         const section = document.getElementById(sectionId);
-        if (!section) return;
-        displayCommandOutput(section.innerHTML);
+        if (!section) return null;
+        return displayCommandOutput(section.innerHTML);
     }
 
     function showAbout() {
-        showSection('about');
+        return showSection('about');
     }
 
     function showResume() {
-        showSection('resume');
+        return showSection('resume');
     }
 
     function showWork() {
-        showSection('work');
+        return showSection('work');
     }
 
     function showProjects() {
-        showSection('projects');
+        return showSection('projects');
     }
 
     function showContact() {
-        showSection('contact');
+        return showSection('contact');
     }
 
     function showHelp() {
-        showSection('help');
+        return showSection('help');
     }
 
     function clearTerminal() {
         commandsHistory.replaceChildren();
+        return null;
     }
 
     function showUnknownCommand(commandText) {
@@ -171,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
         output.append(help, ' to see available commands.');
 
         commandsHistory.appendChild(output);
+        return output;
     }
 
     function displayCommandOutput(content) {
@@ -178,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
         output.className = 'output';
         output.innerHTML = content;
         commandsHistory.appendChild(output);
+        return output;
     }
 
     function addToCommandHistory(commandText) {
@@ -206,6 +217,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const matchingCommands = Object.keys(commands).filter(command => command.startsWith(inputCommand));
         if (matchingCommands.length === 1) {
             currentCommand.textContent = matchingCommands[0];
+        }
+    }
+
+    function scrollToElementStart(element) {
+        const terminalBody = document.querySelector('.terminal-body');
+        if (!terminalBody || !element) return;
+
+        if (terminalBody.scrollHeight > terminalBody.clientHeight) {
+            const terminalRect = terminalBody.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            terminalBody.scrollTop += elementRect.top - terminalRect.top - 8;
+        } else {
+            element.scrollIntoView({ block: 'start' });
         }
     }
 
