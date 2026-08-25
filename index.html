@@ -70,7 +70,7 @@
             <h2>About Me</h2>
             <div class="summary-block">
                 <p>I am a computer science student at the University of Victoria and a full-stack software developer focused on production AI, real-time communications, and platform engineering.</p>
-                <p>My recent work spans distributed telephony, multi-tenant Kotlin services, PostgreSQL concurrency, React product interfaces, application security, OpenTelemetry, and AWS/Kubernetes infrastructure. I enjoy tracing difficult failures across system boundaries and carrying fixes from architecture and persistence through API contracts, user experience, deployment, and observability.</p>
+                <p>My recent work spans distributed telephony, multi-tenant Kotlin services, PostgreSQL, React product interfaces, application security, observability, and AWS/Kubernetes infrastructure. I enjoy tracing difficult failures across system boundaries and carrying fixes from architecture and persistence through user experience and deployment.</p>
             </div>
             <div class="skill-grid compact-grid" aria-label="Current focus areas">
                 <div class="skill-group">
@@ -94,7 +94,7 @@
             <section class="resume-section">
                 <h3>Professional Summary</h3>
                 <div class="summary-block">
-                    <p>Full-stack software developer specializing in distributed systems and applied AI for real-time communications. Experienced taking cross-cutting changes from database schema and concurrency design through generated APIs, frontend workflows, deployment, monitoring, and live verification.</p>
+                    <p>Full-stack software developer specializing in distributed systems and applied AI for real-time communications. Experienced taking cross-cutting changes from backend architecture and persistence through generated APIs, frontend workflows, deployment, and monitoring.</p>
                 </div>
             </section>
 
@@ -107,12 +107,12 @@
                     </div>
                     <p class="resume-item-subtitle"><em>Remote · Full-stack platform and applied AI engineering</em></p>
                     <ul>
-                        <li>Delivered 148 merged pull requests across a Kotlin/TypeScript monorepo, contributing to backend services, PostgreSQL persistence, generated OpenAPI clients, React interfaces, observability, and AWS/Kubernetes infrastructure.</li>
-                        <li>Architected an event-driven Telnyx call-control runtime with PostgreSQL-backed, claim-once continuations to safely resume multi-step voice workflows across replicas under at-least-once webhook delivery.</li>
-                        <li>Built a human-in-the-loop call-review system combining deterministic failure signals, tenant-scoped corrections, indexed failure-shape retrieval, replica-safe distillation, and risk-gated guidance updates.</li>
-                        <li>Designed a fail-closed secret-tokenization boundary for customer-authored JavaScript, exposing plaintext only at approved HTTP, JWT, and messaging sinks while keeping logs and transcripts secret-free.</li>
-                        <li>Eliminated JVM out-of-memory failures and database timeouts in a customer-history API using cycle-safe recursive SQL and keyset pagination; locally verified bounded 50-event responses in approximately 130 ms.</li>
-                        <li>Implemented cardinality-safe transfer telemetry, durable outcomes, Mission Control reporting, and Grafana alerting, then promoted a rootless, multi-architecture database-init image through staged non-production and production rollouts.</li>
+                        <li>Contributed across a large Kotlin and TypeScript monorepo spanning backend services, PostgreSQL persistence, generated API clients, React interfaces, observability, and AWS/Kubernetes infrastructure.</li>
+                        <li>Expanded the voice platform's Telnyx support with reliable webhook-driven workflows for transfers, DTMF, queues, recordings, and media handling.</li>
+                        <li>Built human-in-the-loop review and routing systems that use structured signals, scoped feedback, and safeguards for model-generated changes.</li>
+                        <li>Hardened customer-authored JavaScript by tokenizing secrets and limiting plaintext exposure to approved external integrations.</li>
+                        <li>Resolved production reliability issues involving customer-history queries, authentication flows, concurrent edits, and transfer monitoring.</li>
+                        <li>Helped modernize deployment infrastructure with rootless containers, immutable image digests, staged rollout, and rollback verification.</li>
                     </ul>
                 </div>
 
@@ -165,7 +165,7 @@
                     </div>
                     <div class="skill-group">
                         <h4>Distributed & AI Systems</h4>
-                        <p>Event-driven architecture, idempotency, at-least-once delivery, state machines, LLM evaluation, retrieval, MCP, multimodal audio</p>
+                        <p>Event-driven architecture, idempotency, state machines, LLM evaluation, retrieval, MCP, multimodal audio</p>
                     </div>
                     <div class="skill-group">
                         <h4>Cloud & Operations</h4>
@@ -173,11 +173,11 @@
                     </div>
                     <div class="skill-group">
                         <h4>Observability & Security</h4>
-                        <p>OpenTelemetry, Prometheus, Grafana, metric-cardinality design, secret handling, OAuth/JWT, tenant isolation</p>
+                        <p>OpenTelemetry, Prometheus, Grafana, secret handling, OAuth/JWT, tenant isolation</p>
                     </div>
                     <div class="skill-group">
                         <h4>Engineering Practice</h4>
-                        <p>Git, code review, CI/CD, contract generation, integration testing, incident debugging, staged rollout and rollback planning</p>
+                        <p>Git, code review, CI/CD, contract generation, integration testing, incident debugging, staged rollout planning</p>
                     </div>
                 </div>
             </section>
@@ -244,136 +244,65 @@
 
         <section id="work" class="content-section">
             <h2>Selected Engineering Work</h2>
-            <p class="section-intro">Selected professional work delivered across 148 merged pull requests in the DialAI monorepo from May through August 2026. The repository is private, so these case studies focus on architecture, outcomes, and transferable engineering decisions.</p>
-
-            <div class="impact-grid" aria-label="Engineering impact summary">
-                <div class="impact-stat">
-                    <span class="impact-number">148</span>
-                    <span class="impact-label">merged PRs</span>
-                </div>
-                <div class="impact-stat">
-                    <span class="impact-number">Full stack</span>
-                    <span class="impact-label">database to UI and infrastructure</span>
-                </div>
-                <div class="impact-stat">
-                    <span class="impact-number">Real time</span>
-                    <span class="impact-label">voice, webhooks, queues, media</span>
-                </div>
-                <div class="impact-stat">
-                    <span class="impact-number">Production</span>
-                    <span class="impact-label">security, observability, rollouts</span>
-                </div>
-            </div>
 
             <article class="case-study-card">
-                <div class="case-study-header">
-                    <div>
-                        <span class="case-study-kicker">Distributed systems · Telephony</span>
-                        <h3>Provider-parity voice workflows over at-least-once webhooks</h3>
-                    </div>
-                </div>
+                <span class="case-study-kicker">Distributed systems · Telephony</span>
+                <h3>Voice and telephony platform</h3>
                 <div class="project-tags">
                     <span class="tag">Kotlin</span>
-                    <span class="tag">Ktor</span>
                     <span class="tag">PostgreSQL</span>
                     <span class="tag">Telnyx</span>
                     <span class="tag">Twilio</span>
                     <span class="tag">WebSockets</span>
                 </div>
-                <ul>
-                    <li>Designed an interpreter that translated shared call scripts into imperative Telnyx Call Control actions while preserving existing Twilio behavior.</li>
-                    <li>Introduced a tenant-scoped, PostgreSQL-backed continuation store using claim-once semantics so duplicate webhooks and cross-replica resumes could not execute the same step twice.</li>
-                    <li>Expanded support to extension DTMF, warm-transfer recall, agent queues, recording, answering-machine handling, media-stream handoff, and live transfer announcements.</li>
-                    <li>Verified complex call-leg and transfer flows against real Telnyx calls in addition to unit, integration, and database tests.</li>
-                </ul>
+                <p>Worked across the voice platform to expand provider support for transfers, queue handoffs, DTMF, recordings, and media handling. Designed webhook-driven workflows to remain reliable when events are duplicated or handled by different backend instances.</p>
             </article>
 
             <article class="case-study-card">
-                <div class="case-study-header">
-                    <div>
-                        <span class="case-study-kicker">Applied AI · Human feedback</span>
-                        <h3>A review agent that learns without silently rewriting production behavior</h3>
-                    </div>
-                </div>
+                <span class="case-study-kicker">Applied AI · Human feedback</span>
+                <h3>Applied AI and human feedback</h3>
                 <div class="project-tags">
                     <span class="tag">LLM Evaluation</span>
                     <span class="tag">Retrieval</span>
-                    <span class="tag">PostgreSQL</span>
                     <span class="tag">MCP</span>
                     <span class="tag">React</span>
                 </div>
-                <ul>
-                    <li>Combined deterministic call signals with evidence-grounded model review, producing structured categories and transcript-specific explanations.</li>
-                    <li>Built a feedback loop from human correction to durable lesson, failure-shape retrieval, nightly replica-safe distillation, proposed guidance, and human or risk-gated application.</li>
-                    <li>Kept the hot path to one or two indexed queries with no embedding request; a targeted repository evaluation improved same-shape recall@5 from 0/3 to 3/3.</li>
-                    <li>Applied the same scoped-feedback pattern to automatic email routing while preventing the browser from supplying trusted tenant, flow, or source-message context.</li>
-                </ul>
+                <p>Improved call review, sentiment analysis, and email routing with structured model outputs and human corrections. Added safeguards around tenant isolation, model failures, and how suggested changes are reviewed before reaching production.</p>
             </article>
 
             <article class="case-study-card">
-                <div class="case-study-header">
-                    <div>
-                        <span class="case-study-kicker">Application security · Sandboxed execution</span>
-                        <h3>Making secrets usable without making them observable</h3>
-                    </div>
-                </div>
+                <span class="case-study-kicker">Application security</span>
+                <h3>Secure JavaScript execution</h3>
                 <div class="project-tags">
                     <span class="tag">Security</span>
                     <span class="tag">JavaScript Runtime</span>
-                    <span class="tag">Capability Tokens</span>
-                    <span class="tag">Defense in Depth</span>
+                    <span class="tag">Secret Handling</span>
                 </div>
-                <ul>
-                    <li>Created a per-execution SecretVault that replaced credentials with opaque tokens before they entered customer-authored JavaScript.</li>
-                    <li>Materialized plaintext only at sanctioned HTTP, JWT, SMS, and email sinks; logs, captured output, context additions, and transcripts retained tokens rather than live credentials.</li>
-                    <li>Designed the boundary to fail closed: an unhandled sink receives an unusable token instead of leaking a secret.</li>
-                    <li>Closed a follow-up exfiltration path in which a denied HTTP request could expose a materialized secret through a catchable JavaScript error message.</li>
-                </ul>
+                <p>Hardened customer-authored JavaScript so credentials remain hidden from logs, transcripts, and ordinary runtime output. Restricted plaintext access to approved integration boundaries and closed related error-message leakage paths.</p>
             </article>
 
             <article class="case-study-card">
-                <div class="case-study-header">
-                    <div>
-                        <span class="case-study-kicker">Performance · Reliability · Observability</span>
-                        <h3>Tracing failures across database, JVM, authentication, and telemetry boundaries</h3>
-                    </div>
-                </div>
+                <span class="case-study-kicker">Performance · Operations</span>
+                <h3>Reliability and observability</h3>
                 <div class="project-tags">
                     <span class="tag">PostgreSQL</span>
-                    <span class="tag">Keyset Pagination</span>
-                    <span class="tag">Keycloak</span>
                     <span class="tag">OpenTelemetry</span>
                     <span class="tag">Grafana</span>
+                    <span class="tag">Keycloak</span>
                 </div>
-                <ul>
-                    <li>Resolved a customer-history JVM OOM and recursive-query blow-up using a cycle-safe SQL CTE, bounded event retrieval, and cursor pagination; local verification returned a 50-event page in approximately 130 ms.</li>
-                    <li>Reduced warm tenant reloads from four to six Keycloak calls to zero and active tenant switches from two calls to one, while replacing a multi-second white screen with resilient loading and fallback behavior.</li>
-                    <li>Removed unbounded transcript identifiers from transfer histograms, persisted terminal outcomes, and built tenant-safe operational reporting and Grafana alerts for transfer health.</li>
-                    <li>Added atomic state-machine transition endpoints and row locking to prevent concurrent writers from overwriting unrelated flow changes.</li>
-                </ul>
+                <p>Investigated and fixed issues across database queries, JVM memory use, authentication latency, concurrent flow edits, and frontend loading behavior. Added operational metrics, dashboards, and alerts to make transfer and queue health easier to understand.</p>
             </article>
 
             <article class="case-study-card">
-                <div class="case-study-header">
-                    <div>
-                        <span class="case-study-kicker">Cloud infrastructure · Delivery</span>
-                        <h3>Staged promotion of rootless, immutable database initialization</h3>
-                    </div>
-                </div>
+                <span class="case-study-kicker">Cloud infrastructure · Delivery</span>
+                <h3>Cloud infrastructure and delivery</h3>
                 <div class="project-tags">
                     <span class="tag">AWS</span>
-                    <span class="tag">EKS</span>
-                    <span class="tag">ECR</span>
                     <span class="tag">Kubernetes</span>
                     <span class="tag">Kustomize</span>
                     <span class="tag">OpenTofu</span>
                 </div>
-                <ul>
-                    <li>Packaged database provisioning into a rootless, multi-architecture image published under immutable commit tags and consumed by digest.</li>
-                    <li>Rolled the image through infrastructure, build, convergence, non-production, and production layers with explicit health and promotion gates.</li>
-                    <li>Validated restricted runtime settings across 21 jobs and removed legacy ConfigMap-backed executable scripts after every environment adopted the image.</li>
-                    <li>Preserved deterministic rollback by retaining prior digests and using new job generations rather than reusing completed Kubernetes job names.</li>
-                </ul>
+                <p>Helped modernize Kubernetes deployment workflows with rootless containers, immutable image pinning, restricted runtime settings, and staged promotion through non-production and production environments.</p>
             </article>
         </section>
 
@@ -511,7 +440,7 @@
             <div class="command-list">
                 <div class="command-item"><code>about</code><span>- Display my professional profile</span></div>
                 <div class="command-item"><code>resume</code><span>- View my resume</span></div>
-                <div class="command-item"><code>work</code><span>- Read selected engineering case studies</span></div>
+                <div class="command-item"><code>work</code><span>- View selected professional work</span></div>
                 <div class="command-item"><code>projects</code><span>- Browse personal projects</span></div>
                 <div class="command-item"><code>contact</code><span>- Get my contact information</span></div>
                 <div class="command-item"><code>help</code><span>- Show this help menu</span></div>
