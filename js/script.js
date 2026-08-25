@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="tag">WebSockets</span>
                     <span class="tag">Telephony</span>
                 </div>
-                <p>Built and expanded real-time voice infrastructure across multiple telephony providers, including transfers, call queues, recordings, DTMF, answering-machine handling, and media streaming. Focused on reliable event processing and consistent behavior across providers.</p>
+                <p>Built backend and product capabilities for AI-powered customer communications across voice, messaging, and email. Worked on call handling, transfers, queues, media streaming, and provider integrations with a focus on reliability.</p>
             </article>
 
             <article class="case-study-card">
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="tag">Human Feedback</span>
                     <span class="tag">React</span>
                 </div>
-                <p>Developed review, sentiment, and routing systems that combine model outputs with deterministic signals and human feedback. Added evaluation, retrieval, and guardrails so improvements remain scoped, auditable, and safe.</p>
+                <p>Developed AI-assisted review, sentiment, and routing features that combine model output with structured signals and human feedback. Added evaluation and safety controls to make automated decisions more useful and explainable.</p>
             </article>
 
             <article class="case-study-card">
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="tag">Authentication</span>
                     <span class="tag">Performance</span>
                 </div>
-                <p>Strengthened secret handling for user-authored JavaScript and fixed authentication, tenant-isolation, and concurrency issues across the platform. Improved service reliability by addressing database bottlenecks, stale writes, and failure handling.</p>
+                <p>Improved application security, multi-tenant isolation, authentication, and secret handling across the platform. Diagnosed and resolved performance, concurrency, and recovery issues spanning APIs, databases, and frontend state.</p>
             </article>
 
             <article class="case-study-card">
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="tag">OpenTelemetry</span>
                     <span class="tag">Grafana</span>
                 </div>
-                <p>Built operational dashboards, telemetry, and alerting for voice workflows, and improved cloud delivery through hardened containers, Kubernetes rollouts, and CI/CD changes. Worked across application code, infrastructure-as-code, and production operations.</p>
+                <p>Built observability, dashboards, alerting, and deployment improvements across AWS and Kubernetes. Contributed from application code through infrastructure-as-code and production rollout.</p>
             </article>
         `;
     }
