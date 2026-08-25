@@ -3,6 +3,71 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentCommand = document.getElementById('current-command');
     const commandsHistory = document.getElementById('commands-history');
     const commandButtons = document.getElementById('command-buttons');
+    const workSection = document.getElementById('work');
+    const helpSection = document.getElementById('help');
+
+    if (workSection) {
+        workSection.innerHTML = `
+            <h2>Professional Highlights</h2>
+
+            <article class="case-study-card">
+                <span class="case-study-kicker">Real-time communications</span>
+                <h3>Voice and telephony platforms</h3>
+                <div class="project-tags">
+                    <span class="tag">Kotlin</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">WebSockets</span>
+                    <span class="tag">Telephony</span>
+                </div>
+                <p>Built and expanded real-time voice infrastructure across multiple telephony providers, including transfers, call queues, recordings, DTMF, answering-machine handling, and media streaming. Focused on reliable event processing and consistent behavior across providers.</p>
+            </article>
+
+            <article class="case-study-card">
+                <span class="case-study-kicker">Applied AI</span>
+                <h3>Review, sentiment, and routing systems</h3>
+                <div class="project-tags">
+                    <span class="tag">LLMs</span>
+                    <span class="tag">Audio AI</span>
+                    <span class="tag">Human Feedback</span>
+                    <span class="tag">React</span>
+                </div>
+                <p>Developed review, sentiment, and routing systems that combine model outputs with deterministic signals and human feedback. Added evaluation, retrieval, and guardrails so improvements remain scoped, auditable, and safe.</p>
+            </article>
+
+            <article class="case-study-card">
+                <span class="case-study-kicker">Security and reliability</span>
+                <h3>Safer execution and more resilient services</h3>
+                <div class="project-tags">
+                    <span class="tag">Application Security</span>
+                    <span class="tag">Multi-tenancy</span>
+                    <span class="tag">Authentication</span>
+                    <span class="tag">Performance</span>
+                </div>
+                <p>Strengthened secret handling for user-authored JavaScript and fixed authentication, tenant-isolation, and concurrency issues across the platform. Improved service reliability by addressing database bottlenecks, stale writes, and failure handling.</p>
+            </article>
+
+            <article class="case-study-card">
+                <span class="case-study-kicker">Platform engineering</span>
+                <h3>Observability and production infrastructure</h3>
+                <div class="project-tags">
+                    <span class="tag">AWS</span>
+                    <span class="tag">Kubernetes</span>
+                    <span class="tag">OpenTelemetry</span>
+                    <span class="tag">Grafana</span>
+                </div>
+                <p>Built operational dashboards, telemetry, and alerting for voice workflows, and improved cloud delivery through hardened containers, Kubernetes rollouts, and CI/CD changes. Worked across application code, infrastructure-as-code, and production operations.</p>
+            </article>
+        `;
+    }
+
+    if (helpSection) {
+        const workHelpItem = Array.from(helpSection.querySelectorAll('.command-item'))
+            .find(item => item.querySelector('code')?.textContent === 'work');
+        const description = workHelpItem?.querySelector('span');
+        if (description) {
+            description.textContent = '- View professional highlights';
+        }
+    }
 
     let commandHistory = [];
     let historyIndex = -1;
